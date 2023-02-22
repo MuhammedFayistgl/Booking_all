@@ -1,0 +1,62 @@
+.hotellist-container {
+    display: flex;
+    justify-content: center;
+    background-color: #f0eeee;
+}
+
+.hotellist-headng {
+    width: 100%;
+    max-width: 1024px;
+ margin: 40px 0;
+    h1,
+    p {
+        font-family: "Open Sans", sans-serif;
+       
+    }
+
+   
+}
+.hotellist{
+    height: 50px;
+    background-color: white;
+    border: 3px solid #febb02;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0px;
+    border-radius: 5px;
+   margin: 40px 0;
+    width: 100%;
+    max-width: 1024px;
+    position: relative;
+}
+.heder{
+    display: flex;  
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+.hedercontent{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.filterd-wraper{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.filterd-items-wraper{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.button-see-more{
+    display: flex;
+    justify-content: center;
+}

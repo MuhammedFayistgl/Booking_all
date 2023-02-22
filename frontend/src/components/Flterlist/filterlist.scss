@@ -1,0 +1,36 @@
+// .img-siz-dcrs{
+//     height: 50px;
+// }
+.siCheckButton-foint-siz{
+font-size: small;
+background-color: #0071c2;
+color: white;
+
+padding: 6px 5px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+}.img-siz-dcrs{
+    width: 143px;
+    height: 143px;
+    object-fit: cover;
+  
+     }
+     .NameFountsiz{
+      font-size: small;
+      &:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        
+     
+     } }
+      h6{
+        font-size: smaller;
+        &:hover{
+            text-decoration: underline;
+            cursor: pointer;
+            
+         
+         }
+
+      }
