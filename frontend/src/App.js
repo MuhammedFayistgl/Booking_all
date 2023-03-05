@@ -11,13 +11,16 @@ import List from "./pages/list/List";
 import Login from "./pages/authentication/login";
 import HotelList from "./pages/hotelList/HotelList";
 import Confomation from "./pages/reserve/Confomation";
+import Sign from "./pages/authentication/Sign";
 
 function App() {
+
 
   return (
     <BrowserRouter>
       <Routes>
          <Route path="/login"  element={<Login/>} />
+         <Route path="/signUp"  element={<Sign/>} />
         <Route path="/" element={<Home/>}/>
         <Route path="/hotelslist" element={<List/>}/>
         <Route path="/filterhotels" element={<HotelList/>}/>

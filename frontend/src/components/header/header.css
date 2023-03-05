@@ -4,6 +4,20 @@
   display: flex;
   justify-content: center;
   position: relative;
+ 
+  
+}
+.header-main-background-img{
+ 
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 114%;
+  object-fit: cover;
+
+  
 }
 .HotelListStyle{
   background-color: #b9bbbd;

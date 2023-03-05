@@ -7,7 +7,9 @@
 a{
   color: unset;
   text-decoration: none;
-  
+  &:hover{
+    color: unset;
+  }
 }
 .navContainer{
   width: 100%;
@@ -16,14 +18,23 @@ a{
   display: flex;
   align-items: center;
   justify-content: space-between;
+ cursor: pointer;
+ span{
+  font-size: larger;
+ }
 }
 
 .logo{
   font-weight: 500;
   font-family: "kenfolg";
+  cursor: pointer;
+  
                                                 
 }
-
+.logo:hover{
+  text-decoration:none;
+  color: white;
+}
 .navButton{
   margin-left: 20px;
   border: none;

@@ -6,14 +6,16 @@ import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Navbar from "../../components/navbar/Navbar";
 import PropertyList from "../../components/propertyList/PropertyList";
+import axios from 'axios'
+import  Aos from 'aos'
+import 'aos/dist/aos.css'
 import "./home.css";
 
-import axios from 'axios'
 
 const Home = () => {
 
 useEffect(() => {
-
+   Aos.init({duration: 2000})
     axios.get('http://localhost:8000/api').then( rs => console.log(rs ))
 
 }, [])

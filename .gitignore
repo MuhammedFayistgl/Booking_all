@@ -6,3 +6,7 @@
 /frontend/node_modules
 /backend/package-lock.json
 /frontend/package-lock.json
+/admin/package-lock.json
+/admin/node_modules
+# secrets
+/backend/.env
