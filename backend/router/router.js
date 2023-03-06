@@ -10,6 +10,7 @@ import {
   userdetealsVerification,
   crateNewOTP,
 } from "../controller/userController.js";
+
 import { protect } from "../middlewere/authmiddlwer.js";
 
 const router = express.Router();
@@ -23,6 +24,7 @@ router.post('/sendOtp',otpSend)
 router.post('/otpVerification', signup)
 router.post('/userdetealsVerification', userdetealsVerification)
 router.post("/signup",crateNewOTP)
+
 
 
 export default router;

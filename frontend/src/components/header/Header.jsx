@@ -2,6 +2,7 @@ import "./header.css";
 
 import { useNavigate } from "react-router-dom";
 import Searchbox from "../Searchbox/Searchbox";
+import vedio from '../../assets/production ID_4193130.mp4'
 
 const Header = ({ type }) => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Header = ({ type }) => {
         alt="main-bg"
        
       /> */}
+     {/* <video src={vedio} autoPlay={true}/> */}
       <div
         className={
           type === "list" ? "headerContainer listMode" : "headerContainer"

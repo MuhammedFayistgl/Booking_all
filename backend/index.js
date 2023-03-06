@@ -3,7 +3,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import connutionDB from "./server/server.js";
 import userRouter  from './router/router.js'
-
+import adminRouter from './router/admin.js';
 
 const app = express();
 app.use(cors());
@@ -17,6 +17,7 @@ app.get('/',(req,res)=>{
   res.send("welcome");
 })
 app.use('/user',userRouter)
+app.use('/admin',adminRouter)
 
 
 app.listen(process.env.PORT || 8000, () => {
