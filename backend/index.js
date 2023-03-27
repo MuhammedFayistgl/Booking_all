@@ -14,7 +14,7 @@ connutionDB();
 
 
 app.get('/',(req,res)=>{
-  res.send("welcome");
+  res.send("welcome to node js ");
 })
 app.use('/user',userRouter)
 app.use('/admin',adminRouter)

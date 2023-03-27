@@ -1,0 +1,30 @@
+import mongoose from "mongoose";
+
+ const apiDataModel = mongoose.Schema({
+  amount: {
+    type: "number",
+    required: true,
+  },
+  category: {
+    type: "string",
+    required: true,
+  },
+  discription: {
+    type: "string",
+    required: true,
+  },
+  name: {
+    type: "string",
+    required: true,
+  },
+  place: {
+    type: "string",
+    required: true,
+  },
+  rating: {
+    type: "number",
+    required: true,
+  },
+});
+ const apis = mongoose.model('api',apiDataModel)
+ export default apis
