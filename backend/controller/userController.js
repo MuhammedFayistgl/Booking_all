@@ -151,6 +151,7 @@ export const signup = async (req, res) => {
   //       .json({ errorcode: 0, status: true, message: "user already exists" });
   //   }
 
+
   //   if (!userExist) {
   //     res.status(200).json({ statuscode: 0, msg: "User already exists " });
   //     console.log("User already exists");
