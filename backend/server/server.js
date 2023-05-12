@@ -4,13 +4,14 @@ import mongoose from "mongoose";
 const Url = 'mongodb://127.0.0.1:27017'
 const connution = async () => {
   try {
-   
-    const db = await mongoose.connect(Url, {
+   mongoose.set('strictQuery', true)
+     mongoose.connect(Url, {
         useNewUrlParser: true, 
         useUnifiedTopology: true
     });
     
-    console.log(`Mongodb connection established ${db}`);
+    
+    console.log(`Mongodb connection established ${Url}`);
   } catch (error) {
     console.log("connuction Erorr",error);
     process.exit(1);

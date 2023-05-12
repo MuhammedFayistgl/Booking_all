@@ -25,6 +25,15 @@ import mongoose from "mongoose";
     type: "number",
     required: true,
   },
+  profilImg:{
+    type: "string",
+  }
+  ,extraImages:{
+    type: "array",
+    
+  }
+ 
 });
  const apis = mongoose.model('api',apiDataModel)
  export default apis
+ 

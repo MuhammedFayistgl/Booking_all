@@ -1,12 +1,33 @@
 import  express from 'express'
-import {getdatas, uplodeDatabace ,deletOnedata} from '../controller/adminadditems.js'
-
-
-
+import multer from  'multer'
+import {getdatas, uplodeDatabace ,deletOnedata ,imageupload,deleteimage,editimage,extraimageupload} from '../controller/adminadditems.js'
 
 const router = express.Router()
-router.post("/uplodehotelDeteals",uplodeDatabace)
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "public/");
+    },
+    filename: (req, file, cb) => {
+      const ext = file.mimetype.split("/")[1];
+      cb(null, `image-${file.fieldname}-${Date.now()}.${ext}`);
+    },
+  });
+  const upload = multer({ storage: multerStorage })  
+
+
+router.post("/uplodehotelDeteals",   uplodeDatabace)
 router.get("/getallDeteals",getdatas)
 router.post("/deleteoneDeteals",deletOnedata)
+router.post("/imageupload",upload.single('file'),imageupload)
+router.post("/deleteimage",deleteimage)
+router.post("/editimage",editimage)
+router.post("/extraimageupload",upload.array('filse',15),  extraimageupload)
+
 
 export default router
+
+
+
+
+
+
