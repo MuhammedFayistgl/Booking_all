@@ -8,6 +8,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  FormSummitStatus,
     bockingDate,
     optionsDicress,
     optionsIngreass,
@@ -51,7 +52,7 @@ const Searchbox = ({type,butonDesable}) => {
     <>
       <div
       
-       className=  { type ? "hotellist" :  "headerSearch"}  style={ butonDesable ?  {width:'76%'} : {width:'100%'}} >
+       className=  { type ? "hotellist" :  "headerSearch"}  style={ butonDesable ?  {width:'76%',justifyContent:'center'}  : {width:'100%'}} >
        { !butonDesable &&
        <div className="headerSearchItem">
                 <i class="fa-solid fa-bed headerIcon"></i>
@@ -79,6 +80,7 @@ const Searchbox = ({type,butonDesable}) => {
                     onChange={(item) => {
                       setState({ ...state, ...item });
                       dispatch(bockingDate(item.selection));
+                      dispatch(FormSummitStatus(1))
                     }}
                     months={1}
                     minDate={new Date()}

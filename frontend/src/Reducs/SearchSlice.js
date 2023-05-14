@@ -7,9 +7,10 @@ let initialState = {
   destination: "",
   date: [
     {
-      startDate: 'Check-in',
-      endDate: 'Check-out',
+      startDate: "Check-in",
+      endDate: "Check-out",
       key: "selection",
+     
     },
   ],
 
@@ -22,6 +23,9 @@ let initialState = {
     minPrice: "",
     maxPrice: "",
   },
+  formSummit:{
+    status:0
+  }
 };
 
 const serchSlice = createSlice({
@@ -67,7 +71,6 @@ const serchSlice = createSlice({
 
       state.date[0].startDate = ST;
       console.log("start state changed");
-
       state.date[0].endDate = ET;
       console.log("end dat chenge ");
     },
@@ -78,15 +81,13 @@ const serchSlice = createSlice({
         state.price.minPrice = action.payload.value;
       }
     },
+    FormSummitStatus : (state, action) =>{
+      state.formSummit.status = action.payload
+      console.log('dispach valu',action.payload);
+     
+    }
   },
 });
 
-export const {
-  setDestination,
-  optionsIngreass,
-  optionsDicress,
-  bockingDate,
-  optionsUpdate,
-  priceHandler,
-} = serchSlice.actions;
+export const { setDestination, optionsIngreass, optionsDicress, bockingDate, optionsUpdate, priceHandler ,FormSummitStatus} = serchSlice.actions;
 export default serchSlice.reducer;

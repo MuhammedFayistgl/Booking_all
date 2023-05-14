@@ -75,7 +75,8 @@
     flex-direction: row;
     margin-top: 50px;
     gap: 16px;
-
+    justify-content: center;
+    flex-wrap: wrap;
     .left {
       
     span{

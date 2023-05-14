@@ -1,44 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Button from "react-bootstrap/Button";
 import Card from "../../components/Card/Card";
 
 import "./confomation.scss";
 import Form from "../Form/Form";
-import { Step, StepLabel, Stepper } from "@mui/material";
+import { Container, Step, StepLabel, Stepper } from "@mui/material";
 import Searchbox from "../../components/Searchbox/Searchbox";
 import { useSelector } from "react-redux";
 import BockingDeatials from "../../components/Bocking Deatials/BockingDeatials";
 import { useLocation } from "react-router-dom";
+import Activstep from "../../components/ActiveStep/Activstep";
 // import { useLocation } from "react-router-dom";
 
 const Confomation = () => {
   const {state} = useLocation()
+ 
   // console.log("State", state);
   return (
     <div>
       <Navbar />
-
-      <div className="allcontainer">
-        <div className="innercontainer">
-          <Stepper
-            style={{ marginTop: 30, marginBottom: 20 }}
-            activeStep={1}
-            alternativeLabel
-          >
-            <Step>
-              <StepLabel>{"ghj"}</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>{"ghj"}</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>{"ghj"}</StepLabel>
-            </Step>
-          </Stepper>
-          <div style={{ position: "relative" }}>
+      
+      <Container>
+      {/* Active Step Component */}
+      <Activstep/>
+   
+    
+         
+          <div  style={{ position: "relative" ,display:'flex',justifyContent:'center'}}>
             //** Disable Search button Props */
-            <Searchbox butonDesable={true} />
+           
+               <Searchbox  butonDesable={true} />
+    
+            
           </div>
 
           <div className="all-wrapper">
@@ -68,8 +62,10 @@ const Confomation = () => {
               <Form />
             </div>
           </div>
-        </div>
-      </div>
+
+   
+     
+      </Container>
     </div>
   );
 };
