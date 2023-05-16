@@ -9,9 +9,15 @@ const FeaturedProperties = () => {
           alt=""
           className="fpImg"
         />
-        <span  data-aos="fade-right" className="fpName">Aparthotel Stare Miasto</span>
-        <span  data-aos="fade-left" className="fpCity">Madrid</span>
-        <span  data-aos="fade-right" className="fpPrice">Starting from $120</span>
+        <span data-aos="fade-right" className="fpName">
+          Aparthotel Stare Miasto
+        </span>
+        <span data-aos="fade-left" className="fpCity">
+          Madrid
+        </span>
+        <span data-aos="fade-right" className="fpPrice">
+          Starting from $120
+        </span>
         <div className="fpRating">
           <button>8.9</button>
           <span>Excellent</span>
@@ -23,9 +29,15 @@ const FeaturedProperties = () => {
           alt=""
           className="fpImg"
         />
-        <span  data-aos="fade-right" className="fpName">Comfort Suites Airport</span>
-        <span  data-aos="fade-left" className="fpCity">Austin</span>
-        <span  data-aos="fade-right" className="fpPrice">Starting from $140</span>
+        <span data-aos="fade-right" className="fpName">
+          Comfort Suites Airport
+        </span>
+        <span data-aos="fade-left" className="fpCity">
+          Austin
+        </span>
+        <span data-aos="fade-right" className="fpPrice">
+          Starting from $140
+        </span>
         <div className="fpRating">
           <button>9.3</button>
           <span>Exceptional</span>
@@ -37,9 +49,15 @@ const FeaturedProperties = () => {
           alt=""
           className="fpImg"
         />
-        <span  data-aos="fade-right" className="fpName">Four Seasons Hotel</span>
-        <span  data-aos="fade-left" className="fpCity">Lisbon</span>
-        <span  data-aos="fade-right" className="fpPrice">Starting from $99</span>
+        <span data-aos="fade-right" className="fpName">
+          Four Seasons Hotel
+        </span>
+        <span data-aos="fade-left" className="fpCity">
+          Lisbon
+        </span>
+        <span data-aos="fade-right" className="fpPrice">
+          Starting from $99
+        </span>
         <div className="fpRating">
           <button>8.8</button>
           <span>Excellent</span>
@@ -51,9 +69,15 @@ const FeaturedProperties = () => {
           alt=""
           className="fpImg"
         />
-        <span  data-aos="fade-right" className="fpName">Hilton Garden Inn</span>
-        <span  data-aos="fade-left" className="fpCity">Berlin</span>
-        <span  data-aos="fade-right" className="fpPrice">Starting from $105</span>
+        <span data-aos="fade-right" className="fpName">
+          Hilton Garden Inn
+        </span>
+        <span data-aos="fade-left" className="fpCity">
+          Berlin
+        </span>
+        <span data-aos="fade-right" className="fpPrice">
+          Starting from $105
+        </span>
         <div className="fpRating">
           <button>8.9</button>
           <span>Excellent</span>

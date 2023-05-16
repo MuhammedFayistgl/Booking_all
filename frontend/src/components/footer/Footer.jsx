@@ -1,17 +1,12 @@
 import { useState } from "react";
 import "./footer.css";
 
-
 const Footer = () => {
-
   const [year, setyear] = useState(new Date().getFullYear());
-  console.log(year);
+  
   return (
-    <div  className="footer">
-      <div
-       data-aos="fade-up"
-    data-aos-duration="3000"
-       className="fLists">
+    <div className="footer">
+      <div data-aos="fade-up" data-aos-duration="3000" className="fLists">
         <ul className="fList">
           <li className="fListItem">Countries</li>
           <li className="fListItem">Regions</li>

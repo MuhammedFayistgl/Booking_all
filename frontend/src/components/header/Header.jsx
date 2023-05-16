@@ -2,7 +2,7 @@ import "./header.css";
 
 import { useNavigate } from "react-router-dom";
 import Searchbox from "../Searchbox/Searchbox";
-import vedio from '../../assets/production ID_4193130.mp4'
+import vedio from "../../assets/production ID_4193130.mp4";
 
 const Header = ({ type }) => {
   const navigate = useNavigate();
@@ -15,12 +15,8 @@ const Header = ({ type }) => {
         alt="main-bg"
        
       /> */}
-     {/* <video src={vedio} autoPlay={true}/> */}
-      <div
-        className={
-          type === "list" ? "headerContainer listMode" : "headerContainer"
-        }
-      >
+      {/* <video src={vedio} autoPlay={true}/> */}
+      <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
             <i class="fa-solid fa-bed"></i>
@@ -46,12 +42,9 @@ const Header = ({ type }) => {
         </div>
         {type !== "list" && (
           <>
-            <h1 className="headerTitle">
-              A lifetime of discounts? It's Genius.
-            </h1>
+            <h1 className="headerTitle">A lifetime of discounts? It's Genius.</h1>
             <p className="headerDesc">
-              Get rewarded for your travels – unlock instant savings of 10% or
-              more with a free Lamabooking account
+              Get rewarded for your travels – unlock instant savings of 10% or more with a free Lamabooking account
             </p>
             <button
               onClick={() => {

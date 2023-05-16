@@ -35,7 +35,7 @@ const serchSlice = createSlice({
     //* This reduces update  search input values
 
     setDestination: (state, action) => {
-      state.destination = action.destination;
+      state.destination = action.payload;
     },
     /**  this reducer changes the options value */
     optionsIngreass: (state, action) => {

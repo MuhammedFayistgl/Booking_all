@@ -170,6 +170,7 @@ const List = () => {
             <button>Search</button>
           </div>
           <div className="listResult">
+          {/* Search Itm Component */}
             <SearchItem options={options} />
           </div>
         </div>

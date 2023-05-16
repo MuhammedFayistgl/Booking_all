@@ -15,8 +15,8 @@ const Formcontainer = () => {
   const { state } = useLocation();
   /** reducx state */
   const Rdxstate = useSelector((state) => state.SearchSlice);
-/** dispach  */
-const dispach = useDispatch()
+  /** dispach  */
+  const dispach = useDispatch();
   //!! USE State Hoocks
   const [formData, setformData] = useState({
     Date: new Date().toLocaleDateString(),
@@ -43,9 +43,8 @@ const dispach = useDispatch()
       toast.error("please select your check out date");
     } else {
       toast.success(`your boocking Succussfully`);
-      dispach(FormSummitStatus(2))
+      dispach(FormSummitStatus(2));
       BockingHandler({ formData, Rdxstate });
-
     }
   };
   /** Email validation */
@@ -109,9 +108,8 @@ const dispach = useDispatch()
                   label="Email address"
                   variant="filled"
                   name="Email"
-                  {...error && {helperText :"Incorrect entry."} }
-                  {...!error && {color :"success"} }
-                  
+                  {...(error && { helperText: "Incorrect entry." })}
+                  {...(!error && { color: "success" })}
                   onChange={(e) => {
                     seterror(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value));
 
@@ -128,15 +126,11 @@ const dispach = useDispatch()
                     id="filled-error"
                     label="Confirm email address"
                     variant="filled"
-                    {...conferr &&  {helperText : "Password not mach...!"} }
-                    {...!conferr && {color :"success"} }
-                    onChange={
-                      (e) => {
-                        emailValidation(e.target.value);
-                      }
-
-                     
-                    }
+                    {...(conferr && { helperText: "Password not mach...!" })}
+                    {...(!conferr && { color: "success" })}
+                    onChange={(e) => {
+                      emailValidation(e.target.value);
+                    }}
                   />
                 )}
               </div>
@@ -150,7 +144,6 @@ const dispach = useDispatch()
                   loadingPosition="start"
                   type="submit"
                   value="Submit"
-                  
                   startIcon={<PanToolAltRoundedIcon color="success" />}
                   variant="outlined"
                 >

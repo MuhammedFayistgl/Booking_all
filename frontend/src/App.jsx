@@ -12,8 +12,19 @@ import Login from "./pages/authentication/login";
 import HotelList from "./pages/hotelList/HotelList";
 import Confomation from "./pages/reserve/Confomation";
 import Sign from "./pages/authentication/Sign";
+import { useEffect } from "react";
+import { Axios } from "axios";
+import { dataCollection } from "./Helper/database/DatabaceConnuction";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispach = useDispatch()
+// all data collect server  then dispatche through this function 'HotelApiDataSeter'
+useEffect(() => {
+ dataCollection(dispach)
+
+
+}, [])
 
 
   return (
