@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import "./login.scss";
-import { registerUsers } from "../../Reducs/registerClice";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/navbar/Navbar";
+import { setloginPassword, setloginUsername } from "../../Reducs/LoginSlice";
+import { Button } from "rsuite";
+import { loginWithUsername } from "../../Reducs/extraSlice";
 
 const Login = () => {
   const dispach = useDispatch();
-  const [input, setInput] = useState({});
+  const state = useSelector((state) => state.loginSlice);
+
 
   //! funtions
 
   const submitHandler = (e) => {
-    // dispach(registerUsers(input));
     e.preventDefault();
-
-    // setInput({})
+    dispach(loginWithUsername(state?.loginData));
   };
   return (
     <>
@@ -37,31 +39,31 @@ const Login = () => {
 
             <div className="login-inputs">
               <input
+                required
+                value={state?.Username}
                 name="username"
                 type="text"
                 placeholder="Username"
-                onChange={(e) =>
-                  setInput({
-                    ...input,
-                    [e.target.name]: e.target.value,
-                  })
-                }
+                onChange={(e) => dispach(setloginUsername(e.target.value))}
               />
               <input
+                required
+                value={state?.Password}
                 name="password"
                 type="password"
                 placeholder="password"
-                onChange={(e) =>
-                  setInput({
-                    ...input,
-                    [e.target.name]: e.target.value,
-                  })
-                }
+                onChange={(e) => dispach(setloginPassword(e.target.value))}
               />
-
-              <button className="login-submit" type="submit">
+              <Button
+                loading={state?.loading}
+                color="cyan"
+                className="login-submit"
+                // disabled={state?.nameErr | state?.emailErr |state?.mobNoErr | state?.passwordErr | state?.Input }
+                type="submit"
+                appearance="primary"
+              >
                 Continue
-              </button>
+              </Button>
             </div>
           </form>
 

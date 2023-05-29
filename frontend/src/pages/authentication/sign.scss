@@ -44,7 +44,9 @@
     width: 100%;
     text-align: center;
     padding: 2em;
-
+    span{
+      font-size: small;
+    }
     header {
       width: 220px;
       height: 220px;
@@ -80,6 +82,7 @@
     }
 
     .inputs {
+      position: relative;
       margin-top: -97px;
 
       .otp-input {
@@ -95,11 +98,11 @@
         width: 100%;
         padding: 5px 15px;
         border-radius: 100px;
-        border: none;
-        background: #003580;
+        // border: none;
+        // background: #003580;
         font-family: "Poppins", sans-serif;
-        outline: none;
-        color: #fff;
+        // outline: none;
+        // color: #fff;
       }
     }
 
@@ -126,8 +129,11 @@
   }
 
   .submit {
-    cursor: pointer;
-    margin-top: 135px;
+    // cursor: pointer;
+    margin-top: 25%;
+    position: absolute;
+    left: 0;
+    
   }
 
 
@@ -197,17 +203,28 @@
 .OTPinputs {
    margin-top: 90px;
   .submit {
-    width: 100%;
+    // width: 100%;
     padding: 5px 15px;
     border-radius: 100px;
     border: none;
-    background: #003580;
+    // background: #003580;
     font-family: "Poppins", sans-serif;
     outline: none;
     color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50px, 0px);
+    
    
   }
 }
 .OTP-STATUS{
   color: #fff;
+}
+.inputErr{
+  
+  background-color: #f98c8c  !important;
+}
+.errr{
+  color: red !important;
 }

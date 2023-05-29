@@ -2,11 +2,11 @@ import userSingaDB from "../models/signupModel.js";
 import usermodel from "../models/userModals.js";
 import { genarateToken } from "../utils/util.js";
 import nodemailer from "nodemailer";
-import user from "../models/userModals.js";
+
 import Twilio from "twilio";
 import otpGenerator from "otp-generator";
 
-export const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {    
   try {
     const { username, password } = req.body;
 

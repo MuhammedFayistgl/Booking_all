@@ -5,6 +5,7 @@ import apiData from "../models/apiModal.js";
 export const uplodeDatabace = async (req, res) => {
   const { amount, category, discription, name, place, rating, _id ,profilImg , extraImages} = req.body;
  
+
   // console.log("req.body",req.body);
   try {
     if (!req.body) {

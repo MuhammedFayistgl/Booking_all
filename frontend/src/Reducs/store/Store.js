@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import SearchSlice  from '../SearchSlice'
-import registr from './../registerClice'
+import register from '../registerClice'
 import userBocking from '../userBockingSlice'
 import HotelSlice from '../mainDataClice'
-
+import DrowerSettings from '../DrowerSettings'
+import loginSlice from '../LoginSlice'
+// Store configuration
 export const Store = configureStore({
     reducer:{
         SearchSlice,
-        registr,
+        register,
         userBocking,
         HotelSlice,
+        DrowerSettings,
+        loginSlice,
     }
 })

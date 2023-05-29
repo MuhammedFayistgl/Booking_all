@@ -4,24 +4,30 @@ import * as dotenv from "dotenv";
 import connutionDB from "./server/server.js";
 import userRouter from "./router/router.js";
 import adminRouter from "./router/admin.js";
-import fs from 'fs'
-import path from 'path'
+import fs from "fs";
+import path from "path";
 import bodyParser from "body-parser";
-
-
+import cookieParser from "cookie-parser";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+   origin :['http://localhost:5173'],
+   credentials:true
+   
+  })
+);
 // app.use(express.json());
-app.use(bodyParser.json({extended: false}));
+app.use(cookieParser());
+app.use(bodyParser.json({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+
+app.use(express.static("public"));
 dotenv.config();
 connutionDB();
 
-
-console.log( path.dirname(''))
+console.log(path.dirname(""));
 
 app.get("/", (req, res) => {
   res.send("welcome to node js ");

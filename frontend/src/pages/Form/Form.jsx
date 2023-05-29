@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./form.scss";
-import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
+import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PanToolAltRoundedIcon from "@mui/icons-material/PanToolAltRounded";
 import TouchAppRoundedIcon from "@mui/icons-material/TouchAppRounded";
@@ -10,11 +10,15 @@ import toast, { Toaster } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FormSummitStatus } from "../../Reducs/SearchSlice";
+import Tooltip from "@mui/material/Tooltip";
+import BockingDeatials from "../../components/Bocking Deatials/BockingDeatials";
+import TooltipComponent from "./Tooltip/TooltipComponent";
 
 const Formcontainer = () => {
   const { state } = useLocation();
   /** reducx state */
   const Rdxstate = useSelector((state) => state.SearchSlice);
+
   /** dispach  */
   const dispach = useDispatch();
   //!! USE State Hoocks
@@ -28,9 +32,10 @@ const Formcontainer = () => {
   console.log("Rdxstate", Rdxstate);
 
   /** ERROR STATE  for email validation and verification */
-  const [error, seterror] = useState({});
-  const [conferr, setconferr] = useState(false);
-
+  const [error, seterror] = useState(true);
+  const [conferm, setconferm] = useState(false);
+  console.log(error, "seterror");
+  console.log(conferm, "conferm");
   /** SUBMIT all text feald combine one State Object calld [form] */
   const SubmitHandler = (e) => {
     // toast.loading('please wait...')
@@ -44,18 +49,22 @@ const Formcontainer = () => {
     } else {
       toast.success(`your boocking Succussfully`);
       dispach(FormSummitStatus(2));
-      BockingHandler({ formData, Rdxstate });
+      BockingHandler({ formData, Rdxstate }, dispach);
     }
   };
   /** Email validation */
-  const emailValidation = (macheml) => {
-    const em = formData.Email;
+  const emailValidation = (macheml, e) => {
+
+    const em = e.target.value;
+    console.log("em ", em);
+    console.log("macheml ", macheml);
     if (em === macheml) {
-      setconferr(false);
+      setconferm(false);
     } else {
-      setconferr(true);
+      setconferm(true);
     }
   };
+
   return (
     <div>
       <Toaster />
@@ -112,43 +121,33 @@ const Formcontainer = () => {
                   {...(!error && { color: "success" })}
                   onChange={(e) => {
                     seterror(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value));
-
                     setformData({
                       ...formData,
                       [e.target.name]: e.target.value,
                     });
                   }}
                 />
-                {formData?.Email && (
-                  <TextField
-                    size="small"
-                    error={conferr}
-                    id="filled-error"
-                    label="Confirm email address"
-                    variant="filled"
-                    {...(conferr && { helperText: "Password not mach...!" })}
-                    {...(!conferr && { color: "success" })}
-                    onChange={(e) => {
-                      emailValidation(e.target.value);
-                    }}
-                  />
-                )}
+               
               </div>
             </Box>
             <Box></Box>
 
             <ul className="form-style-1">
               <li>
-                <LoadingButton
-                  loading={false}
-                  loadingPosition="start"
-                  type="submit"
-                  value="Submit"
-                  startIcon={<PanToolAltRoundedIcon color="success" />}
-                  variant="outlined"
-                >
-                  Submit
-                </LoadingButton>
+                {!error && (
+                  <Tooltip title={<TooltipComponent />}>
+                    <LoadingButton
+                      loading={false}
+                      loadingPosition="start"
+                      type="submit"
+                      value="Submit"
+                      startIcon={<PanToolAltRoundedIcon color="success" />}
+                      variant="outlined"
+                    >
+                      Submit
+                    </LoadingButton>
+                  </Tooltip>
+                )}
               </li>
             </ul>
           </form>
