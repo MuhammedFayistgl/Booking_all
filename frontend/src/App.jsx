@@ -1,10 +1,6 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import 'rsuite/dist/rsuite.min.css';
+import "rsuite/dist/rsuite.min.css";
 
 //*? import pages */
 import Home from "./pages/home/Home";
@@ -20,29 +16,31 @@ import { dataCollection } from "./Helper/database/DatabaceConnuction";
 import { useDispatch } from "react-redux";
 import Otp from "./pages/authentication/Otp";
 import axios from "axios";
+import ProtectedRoute from "./components/Privet.route/ProtectedRoute";
+import { setCookies } from "./Reducs/LoginSlice";
 
 function App() {
   axios.defaults.withCredentials = true;
-  const dispach = useDispatch()
-// all data collect server  then dispatche through this function 'HotelApiDataSeter'
-useEffect(() => {
- dataCollection(dispach)
-
-
-}, [])
-
+  const dispach = useDispatch();
+  // all data collect server  then dispatche through this function 'HotelApiDataSeter'
+  useEffect(() => {
+    dataCollection(dispach);
+   dispach( setCookies())
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-         <Route path="/login"  element={<Login/>} />
-         <Route path="/signUp"  element={<Sign/>} />
-         <Route path="/otp"  element={<Otp/>} />
-        <Route path="/" element={<Home/>}/>
-        <Route path="/hotelslist" element={<List/>}/>
-        <Route path="/filterhotels" element={<HotelList/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<Sign />} />
+        <Route path="/otp" element={<Otp />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/hotelslist" element={<List />} />
+        <Route path="/filterhotels" element={<HotelList />} />
         <Route path="/hotel" element={<Hotel />} />
-        <Route path="/confometon" element={<Confomation/>} />
+        <Route path="/confometon" element ={<ProtectedRoute/>}>
+          <Route  path=""  element={<Confomation />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

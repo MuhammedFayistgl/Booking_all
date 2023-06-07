@@ -14,7 +14,7 @@ const Otp = () => {
   const state = useSelector((state) => state.register);
   const dispach = useDispatch();
   if (state.otpVerification) {
-    navigate("/");
+    navigate("/login");
   }
   //** */
   const HandleAlldatasubmit = (e) => {

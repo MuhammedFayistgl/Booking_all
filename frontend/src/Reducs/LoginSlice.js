@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginWithUsername } from "./extraSlice";
+import { loginWithEmail } from "./extraSlice";
+import { toast } from "react-hot-toast";
+import { Navigate, redirect } from "react-router-dom";
+
+
 const state = {
   loading: false,
-  loginData: {}, // else {}
+  loginData: {}, 
+  emailErr:false,
+  login:false,
+  cookie:false,
 };
 
 const loginSlice = createSlice({
@@ -10,26 +17,42 @@ const loginSlice = createSlice({
   initialState: state,
   reducers: {
     setloginUsername: (state, action) => {
-      state.loginData.Username = action.payload;
+        state.emailErr = !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(Object.entries(action.payload)[0][1]);
+      state.loginData ={...state.loginData ,...action.payload};
     },
     setloginPassword: (state, action) => {
-      state.loginData.Password = action.payload;
+        state.loginData ={...state.loginData ,...action.payload};
     },
+    setCookies: (state, action) =>{
+      state.cookie = document.cookie
+    }
   },
   extraReducers: {
-    [loginWithUsername.pending]: (state, action) => {
+    [loginWithEmail.pending]: (state, action) => {
       state.loading = true;
+   
     },
-    [loginWithUsername.rejected]: (state, action) => {
-        
+    [loginWithEmail.rejected]: (state, action) => {
+        console.log(action.payload.message);
+        toast.error(action.payload.message)
       state.loading = false;
     },
-    [loginWithUsername.fulfilled]: (state, action) => {
+    [loginWithEmail.fulfilled]: (state, action) => {
+
+        toast.success(action.payload.data.message)
+        console.log(action.payload.message);
+  
+
       state.loading = false;
+      if(action.payload.statusText === "OK"){
+        state.login = true
+        // Navigate('/')
+       
+      }
       console.log('action.paylod',action.payload);
     },
   },
 });
 
-export const { setloginUsername, setloginPassword } = loginSlice.actions;
+export const { setloginUsername, setloginPassword ,setCookies} = loginSlice.actions;
 export default loginSlice.reducer;

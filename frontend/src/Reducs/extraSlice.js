@@ -31,9 +31,9 @@ export const otpverificationserver = createAsyncThunk(
   }
 );
 /** Login user with username password */
-export const loginWithUsername = createAsyncThunk("loginWithUsername", async (data) => {
-  axios
+export const loginWithEmail = createAsyncThunk("loginWithEmail", async (data ) => {
+  console.log(data,'data');
   let res =axios.post("http://localhost:5000/user/userlogin",  data )
-  return res
+  return res 
    
 });

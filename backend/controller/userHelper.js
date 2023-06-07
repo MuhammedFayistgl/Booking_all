@@ -82,42 +82,32 @@ export const otpverifyingHandler = async (req, res, next) => {
 
     try {
       users = await users.save();
-      const UserdbID = users._id;
-      const Token = Jwt.sign({ UserdbID }, process.env.JWT_SECRET, { expiresIn: "1h" });
-      res.status(200).cookie("token", String(Token), { maxAge: 100000 }).json({ message: "Registration succuss fully" }), next();
+      // const UserdbID = users._id;
+      // const Token = Jwt.sign({ UserdbID }, process.env.JWT_SECRET, { expiresIn: "1h" });
+      res
+        .status(200)
+        // .cookie("token", String(Token), { maxAge: 100000 })
+        .json({ message: "Registration succuss fully" }),
+        next();
     } catch (error) {
       console.log("server err", error);
     }
   }
-
-  // let compare = bcrypt.compare(Otp, otpHash)
-  // if (!compare) {
-  //   res.status(400).json({ message: "Invalid otp ! please enter curuct otp", otpVerification: false });
-
-  // } else if (!UserName && !Email && !Number && !password) {
-  //   res.status(204).json({ message: "please enter all fields" });
-  // } else {
-  //   let HashPassword = bcrypt.hashSync(toString(password),10)
-  //   try {
-  // const user = new users({
-  //   UserName,
-  //   Email,
-  //   password:HashPassword,
-  //   Number,
-  // });
-  // user = await user.save();
-  //     res.status(200).json({ message: "Registration succuss fully" });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 };
 export const loginHandler = async (req, res) => {
-  const { Username, Password } = req.body;
-  const UsNameExist = await usersmodal.find({ UserName: Username })
-  const UsPaswdExist = await usersmodal.find({ password: Password })
-  console.log('UsNameExist',UsNameExist);
-  console.log('UsPaswdExist',UsPaswdExist);
+  const { Email, password } = req.body;
+  const UsEmailExist = await usersmodal.find({ Email: Email });
+  if (!UsEmailExist) {
+    return res.status(403).json({ message: "Invalid Email , please enter a valid email or register with the email" });
+  }
+
+  let MachPassword = bcrypt.compareSync(password, UsEmailExist[0].password);
+  console.log("MachPassword", MachPassword);
+
+  const userID = UsEmailExist[0]._id;
+  console.log("userID", userID);
+  const Token = Jwt.sign({ userID }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  return res.status(200).cookie("token", String(Token), { maxAge: 100000000 }).json({ message: "login Succuss fully" });
 };
 
 // Middleware

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./login.scss";
 
@@ -7,22 +7,27 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/navbar/Navbar";
 import { setloginPassword, setloginUsername } from "../../Reducs/LoginSlice";
 import { Button } from "rsuite";
-import { loginWithUsername } from "../../Reducs/extraSlice";
+import { loginWithEmail } from "../../Reducs/extraSlice";
+import { Toaster } from "react-hot-toast";
 
-const Login = () => {
+const Login = ({Order}) => {
   const dispach = useDispatch();
   const state = useSelector((state) => state.loginSlice);
+  const Navigate = useNavigate()
 
-
+  if(state.login  ){
+    Navigate('/')
+  }
   //! funtions
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispach(loginWithUsername(state?.loginData));
+    dispach(loginWithEmail(state?.loginData));
   };
   return (
     <>
       <Navbar />
+      <Toaster/>
       <div className="login-login">
         <div className="login-app">
           <div className="login-bg"></div>
@@ -38,13 +43,15 @@ const Login = () => {
             <input style={{ display: "none" }} type="file" name="file" id="file" />
 
             <div className="login-inputs">
+            {state?.emailErr && <span className="errr"> please enter valid Email</span>}
               <input
                 required
-                value={state?.Username}
-                name="username"
+                value={state?.Email}
+                name="Email"
                 type="text"
-                placeholder="Username"
-                onChange={(e) => dispach(setloginUsername(e.target.value))}
+                placeholder="Email"
+                onChange={(e) => dispach(setloginUsername({[e.target.name]: e.target.value }))}
+                
               />
               <input
                 required
@@ -52,7 +59,7 @@ const Login = () => {
                 name="password"
                 type="password"
                 placeholder="password"
-                onChange={(e) => dispach(setloginPassword(e.target.value))}
+                onChange={(e) => dispach(setloginPassword({[e.target.name]: e.target.value }))}
               />
               <Button
                 loading={state?.loading}
