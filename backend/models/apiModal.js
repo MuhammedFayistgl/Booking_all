@@ -27,9 +27,11 @@ import mongoose from "mongoose";
   },
   profilImg:{
     type: "string",
+    required: false,
   }
   ,extraImages:{
     type: "array",
+    required: false,
     
   }
  

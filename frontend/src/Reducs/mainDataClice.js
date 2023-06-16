@@ -10,6 +10,7 @@ const HotelSlice = createSlice({
   reducers: {
     HotelApiDataSeter: (state, action) => {
         state.allHotals = action.payload
+        
     },
   },
 });

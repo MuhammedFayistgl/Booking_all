@@ -8,7 +8,7 @@ import {
   deleteimage,
   editimage,
   extraimageupload,
-} from "../controller/adminadditems.js";
+  } from "../controller/adminadditems.js";
 
 const router = express.Router();
 const multerStorage = multer.diskStorage({
