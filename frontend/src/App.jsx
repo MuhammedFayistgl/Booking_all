@@ -12,20 +12,27 @@ import Confomation from "./pages/reserve/Confomation";
 import Sign from "./pages/authentication/Sign";
 import { useEffect } from "react";
 
-import { dataCollection } from "./Helper/database/DatabaceConnuction";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import Otp from "./pages/authentication/Otp";
 import axios from "axios";
 import ProtectedRoute from "./components/Privet.route/ProtectedRoute";
 import { setCookies } from "./Reducs/LoginSlice";
+import { dataCollection } from "./Reducs/extraSlice";
+import { useCookies } from "react-cookie";
 
 function App() {
+
   axios.defaults.withCredentials = true;
+
+  const [cookies, setCookie] = useCookies();
+
   const dispach = useDispatch();
   // all data collect server  then dispatche through this function 'HotelApiDataSeter'
   useEffect(() => {
-    dataCollection(dispach);
-   dispach( setCookies())
+
+    dispach(setCookies())
+    dispach(dataCollection())
   }, []);
 
   return (
@@ -34,12 +41,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<Sign />} />
         <Route path="/otp" element={<Otp />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={cookies.token ? <Home /> : <Login />} />
         <Route path="/hotelslist" element={<List />} />
         <Route path="/filterhotels" element={<HotelList />} />
         <Route path="/hotel" element={<Hotel />} />
-        <Route path="/confometon" element ={<ProtectedRoute/>}>
-          <Route  path=""  element={<Confomation />} />
+        <Route path="/confometon" element={<ProtectedRoute />}>
+          <Route path="" element={<Confomation />} />
         </Route>
       </Routes>
     </BrowserRouter>

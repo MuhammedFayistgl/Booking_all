@@ -6,7 +6,7 @@ import { json } from "express";
 
 export const registergenrteOtpHandler = async (req, res, next) => {
   let { Email } = req.body;
-
+console.log(req.body);
   const otp = Math.floor(Math.random() * 100000);
 
   try {
@@ -100,7 +100,7 @@ export const loginHandler = async (req, res) => {
   if (!UsEmailExist) {
     return res.status(403).json({ message: "Invalid Email , please enter a valid email or register with the email" });
   }
-
+ 
   let MachPassword = bcrypt.compareSync(password, UsEmailExist[0].password);
   console.log("MachPassword", MachPassword);
 

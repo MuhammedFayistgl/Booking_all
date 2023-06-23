@@ -20,5 +20,5 @@ const userSchema = mongoose.Schema({
 
   }
 });
-const users = mongoose.model('registeruser',userSchema)
+const users = mongoose.model('RegistrationUserData',userSchema)
 export default users

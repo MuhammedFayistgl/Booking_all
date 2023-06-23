@@ -112,26 +112,34 @@ export const imageupload = async (req, res) => {
   // console.log("req.body",req.body);
   const { fileID } = req.body
   const { filename } = req.file
-
+  console.log(req.body);
+  console.log(req.file);
   const idExist = await apiData.findById(fileID)
 
-
+  console.log('idExist', idExist);
   if (!idExist) {
     res.status(404).json({ status: '404 Not Found' })
-  } else {
+
+  } else if (idExist.profilImg) {
+    const { profilImg } = idExist
+
+
+    const oldimgname = profilImg.split('/')[3]//.toString()
+
+
+    fs.unlink(`public/${oldimgname}`, (err) => {
+      if (err) { console.log('err', err); }
+      console.log(`${oldimgname} chenge to ${filename}`);
+    });
+  }
+
+  else {
     try {
-      const { profilImg } = idExist
 
 
-      const oldimgname = profilImg.split('/')[3]//.toString()
-
-
-      fs.unlink(`public/${oldimgname}`, (err) => {
-        if (err) { console.log('err', err); }
-        console.log(`${oldimgname} chenge to ${filename}`);
-      });
       idExist.profilImg = `http://localhost:5000/${filename}`
       await idExist.save()
+      console.log('image uploded successfully ');
       res.status(200).json({ status: 200, message: 'Profile Image Saved successfully' })
 
     } catch (error) {

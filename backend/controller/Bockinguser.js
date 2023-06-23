@@ -1,9 +1,9 @@
 export const bockingHandler = async (req, res) => {
-    try {
+    // try {
         
-    } catch (error) {
-        console.log(error);
-    }
+    // } catch (error) {
+    //     console.log(error);
+    // }
   console.log("halo");
   console.log(req.body);
 };

@@ -8,8 +8,10 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { useNavigate } from "react-router-dom";
 import "./propertyList.css";
+import { useSelector } from "react-redux";
 
 const PropertyList = () => {
+  const state = useSelector((state) => state.HotelSlice.allHotals.data)
   let navigate = useNavigate();
 
   return (

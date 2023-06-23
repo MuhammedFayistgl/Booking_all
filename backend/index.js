@@ -11,20 +11,28 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
-app.use(
-  cors({
-   origin :['http://localhost:5173'],
-   credentials:true
-   
-  })
-);
+
+app.use(function (req, res, next) {
+
+  var allowedDomains = ['http://localhost:5173','http://localhost:5174' ];
+  var origin = req.headers.origin;
+  if(allowedDomains.indexOf(origin) > -1){
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Accept');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  next();
+})
 // app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json({ extended: false }));
 app.use(bodyParser.json());
-
+dotenv.config()
 app.use(express.static("public"));
-dotenv.config();
+
 connutionDB();
 
 console.log(path.dirname(""));
@@ -39,3 +47,4 @@ app.listen(process.env.PORT || 8000, () => {
   console.log(`nodes listening on port${process.env.PORT} `);
   console.log();
 });
+

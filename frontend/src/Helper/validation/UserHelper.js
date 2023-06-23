@@ -4,20 +4,14 @@ import axios from 'axios';
 
 import { FormSummited } from "../../Reducs/DrowerSettings";
 
-export const BockingHandler = (formdata,dispach) => {
-  try {
-     console.log("form submitted", formdata);
-    axios.post('http://localhost:5000/user/bocking',{formdata}).then((response) => {
-      console.log('server res ==',response);
-    })
-  } catch (error) {
-    console.error(error)
-  }
-  // dispach(FormSummited(formdata))
- 
 
-  /** form validation */
-};
+
+
+// dispach(FormSummited(formdata))
+
+
+/** form validation */
+
 export const emailconfomationHandler = (valOne, valTow) => {
   let val1 = valOne.toString();
   let val2 = valTow.toString();

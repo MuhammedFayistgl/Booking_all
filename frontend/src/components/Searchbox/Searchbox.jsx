@@ -45,7 +45,7 @@ const Searchbox = ({ type, butonDesable }) => {
       >
         {!butonDesable && (
           <div className="headerSearchItem">
-            <i class="fa-solid fa-bed headerIcon"></i>
+            <i className="fa-solid fa-bed headerIcon"></i>
             <input
               type="text"
               placeholder="Where are you going?"
@@ -79,7 +79,7 @@ const Searchbox = ({ type, butonDesable }) => {
           )}
         </div>
         <div className="headerSearchItem">
-          <i class="fa-solid fa-person headerIcon"></i>
+          <i className="fa-solid fa-person headerIcon"></i>
           <span
             onClick={() => setOpenOptions(!openOptions)}
             className="headerSearchText"

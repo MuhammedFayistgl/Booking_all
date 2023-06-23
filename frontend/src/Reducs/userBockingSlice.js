@@ -1,17 +1,33 @@
-import { createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import { BockingHandler } from './extraSlice'
+import { toast } from 'react-hot-toast'
 
 const initialState = {
-    userID:'ertuiyoi489750y'
+    userID: 'ertuiyoi489750y',
+    bookDeatilse: {
+    }
+
 }
 
 
 const userbocking = createSlice({
     name: 'userbocking',
     initialState,
-    reducers:{
-
+    reducers: {
+        setUseername: (state, action) => { state.bookDeatilse.FullName = action.payload },
+        setPhonnumber: (state, action) => {
+            state.bookDeatilse.Phone = action.payload
+            // console.log({...state.bookDeatilse.Phone, ...action.payload});
+        },
+        setEmail: (state, action) => { state.bookDeatilse.Email = action.payload ,console.log(action) },
+        setBoocking: (state, action) => { },
+    },
+    extraReducers: {
+        [BockingHandler.fulfilled]: (state, action) => { state.Order = action.payload },
+        [BockingHandler.pending]: (state, action) => { return toast.loading(true) },
+        [BockingHandler.rejected]: (state, action) => { return toast.loading(false) },
     }
 
 })
-
+export const { setUseername, setPhonnumber, setEmail, setBoocking, } = userbocking.actions
 export default userbocking.reducer

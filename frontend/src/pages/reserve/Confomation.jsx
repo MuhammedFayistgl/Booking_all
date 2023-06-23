@@ -48,14 +48,14 @@ const Confomation = () => {
               <div className="price-details box-container  bg-light">
                 <div className="price-container  ">
                   <h5>Price</h5>
-                  <span>₹{state.amount}</span>
+                  <span>₹{state?.amount}</span>
                 </div>
                 <span>(for 2 guests)</span>
                 <div className="extra-  ">
                   <h5>Excluded charges</h5>
                   <div className="price-container">
                     <span>Goods & services tax</span>
-                    <span>₹ {state.amount/100}</span>
+                    <span>₹ {state?.amount/100}</span>
                   </div>
                 </div>
               </div>

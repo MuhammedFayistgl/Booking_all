@@ -8,7 +8,7 @@ const Card = ({ seavblbutton }) => {
   return (
     <>
       <div className="searchItem">
-        <img src={state.profilImg} alt="" className="siImg" />
+        <img src={state?.profilImg} alt="" className="siImg" />
         <div className="siDesc">
           <h1 className="siTitle">{state?.name}</h1>
           <span className="siDistance">{`hhh from center`}</span>

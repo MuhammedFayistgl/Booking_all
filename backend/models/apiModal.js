@@ -36,6 +36,6 @@ import mongoose from "mongoose";
   }
  
 });
- const apis = mongoose.model('api',apiDataModel)
+ const apis = mongoose.model('CRUDapis',apiDataModel)
  export default apis
  

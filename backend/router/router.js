@@ -25,7 +25,7 @@ const router = express.Router();
 // router.post("/otpVerification", signup);
 // router.post("/userdetealsVerification", userdetealsVerification);
 // router.post("/signup", crateNewOTP);
-// router.post("/bocking", bockingHandler);
+router.post("/bocking", bockingHandler);
 router.post("/getotp",registergenrteOtpHandler);
 router.post("/otpverifying",otpverifyingHandler);
 

@@ -31,9 +31,34 @@ export const otpverificationserver = createAsyncThunk(
   }
 );
 /** Login user with username password */
-export const loginWithEmail = createAsyncThunk("loginWithEmail", async (data ) => {
-  console.log(data,'data');
-  let res =axios.post("http://localhost:5000/user/userlogin",  data )
-  return res 
-   
+export const loginWithEmail = createAsyncThunk("loginWithEmail", async (data) => {
+  console.log(data, 'data');
+  let res = axios.post("http://localhost:5000/user/userlogin", data)
+  return res
+
 });
+
+// get all data from database
+export const dataCollection = createAsyncThunk(
+  'getalldatafromdatabase',
+  async () => {
+    const res = await
+      axios
+        .get("http://localhost:5000/admin/getallDeteals")
+        .then((response) => response.data.data)
+    // .catch((err) => {
+    //   console.log(err);
+    // });
+    console.log(res, 'response');
+    return res
+  }
+)
+// Booking 
+export const BockingHandler = createAsyncThunk(
+  'Bocking',
+  async (BoplingData) => {
+    const res = await axios.post('http://localhost:5000/user/bocking', { BoplingData }).then((response) => {
+      return response
+    })
+    return res
+  })
