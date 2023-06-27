@@ -9,6 +9,7 @@ import Filterlist from "../../components/Flterlist/Filterlist.jsx";
 import Footer from "../../components/footer/Footer.jsx";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
+
 const HotelList = () => {
   //** STATE  */
   const [alignment, setAlignment] = React.useState("web");

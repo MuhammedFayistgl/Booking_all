@@ -6,11 +6,14 @@ import { Button, ButtonToolbar } from "rsuite";
 import { DrowerSetOpen } from "../../Reducs/DrowerSettings";
 import { useDispatch, useSelector } from "react-redux";
 import { TbBrandBooking } from "react-icons/tb";
-import OnlineStatus from '../OnlineStatus/OnlineStatus'
+import OnlineStatus from "../OnlineStatus/OnlineStatus";
+import { useCookies } from "react-cookie";
+import Confirmalertbutton from "./ConfrmlogoutBTN/Confirmloginalert";
 
 const Navbar = ({ wlcom }) => {
   let navigate = useNavigate();
   const dispath = useDispatch();
+  const [cookies, setCookie, removCookie] = useCookies();
 
   const BookData = useSelector((state) => state.DrowerSettings.BockingData);
 
@@ -29,15 +32,19 @@ const Navbar = ({ wlcom }) => {
             </ButtonToolbar>
           )}
           <Drower />
+          {cookies.token ? (
+            <Confirmalertbutton />
+          ) : (
+            <button onClick={() => navigate("/login")} className="navButton">
+              Login
+            </button>
+          )}
           <button onClick={() => navigate("/signUp")} className="navButton">
             Register
           </button>
-          <button onClick={() => navigate("/login")} className="navButton">
-            Login
-          </button>
         </div>
       </div>
-    <OnlineStatus />
+      <OnlineStatus />
     </div>
   );
 };

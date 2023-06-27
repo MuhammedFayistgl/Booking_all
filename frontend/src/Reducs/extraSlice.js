@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 import { toast } from "react-hot-toast";
 /** Registration with email */
 export const registeruser = createAsyncThunk(
@@ -26,17 +27,22 @@ export const otpverificationserver = createAsyncThunk(
     let { otpHash, Otp } = data;
     let input = data.Input;
     const responce = await axios.post("http://localhost:5000/user/otpverifying", { otpHash, Otp, ...input });
-    console.log("res.data", responce);
     return responce.data;
   }
 );
 /** Login user with username password */
-export const loginWithEmail = createAsyncThunk("loginWithEmail", async (data) => {
-  console.log(data, 'data');
-  let res = axios.post("http://localhost:5000/user/userlogin", data)
-  return res
+export const loginWithEmail = createAsyncThunk("loginWithEmail",
+  async (data) => {
+    const res = axios.post("http://localhost:5000/user/userlogin", data)
+      .then((res) => { return res.data })
+    return res
 
-});
+  });
+
+// Check if login or  . Middleware 
+// export const loginMiddleware = createAsyncThunk("loginMiddleware",
+
+// )
 
 // get all data from database
 export const dataCollection = createAsyncThunk(
@@ -46,10 +52,6 @@ export const dataCollection = createAsyncThunk(
       axios
         .get("http://localhost:5000/admin/getallDeteals")
         .then((response) => response.data.data)
-    // .catch((err) => {
-    //   console.log(err);
-    // });
-    console.log(res, 'response');
     return res
   }
 )
@@ -59,6 +61,6 @@ export const BockingHandler = createAsyncThunk(
   async (BoplingData) => {
     const res = await axios.post('http://localhost:5000/user/bocking', { BoplingData }).then((response) => {
       return response
-    })
+    }).catch((err) => toast.error(err));
     return res
   })

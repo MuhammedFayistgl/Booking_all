@@ -57,7 +57,7 @@ const Searchbox = ({ type, butonDesable }) => {
         )}
 
         <div className="headerSearchItem">
-          <i class="fa-solid fa-calendar-days headerIcon"></i>
+          <i className="fa-solid fa-calendar-days headerIcon"></i>
           <span onClick={() => setOpenDate(!openDate)} className="headerSearchText">
             {`${date.startDate} - ${date.endDate}`}
           </span>

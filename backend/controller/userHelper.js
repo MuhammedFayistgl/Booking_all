@@ -6,7 +6,7 @@ import { json } from "express";
 
 export const registergenrteOtpHandler = async (req, res, next) => {
   let { Email } = req.body;
-console.log(req.body);
+  console.log(req.body);
   const otp = Math.floor(Math.random() * 100000);
 
   try {
@@ -82,13 +82,17 @@ export const otpverifyingHandler = async (req, res, next) => {
 
     try {
       users = await users.save();
-      // const UserdbID = users._id;
-      // const Token = Jwt.sign({ UserdbID }, process.env.JWT_SECRET, { expiresIn: "1h" });
-      res
-        .status(200)
-        // .cookie("token", String(Token), { maxAge: 100000 })
-        .json({ message: "Registration succuss fully" }),
-        next();
+      const UserdbID = users._id;
+      const Token = Jwt.sign({ UserdbID }, process.env.JWT_SECRET, { expiresIn: "1h" });
+      res.cookie("token", String(Token), { maxAge: 3600000 })
+
+      res.status(200).json({
+        statuscode: 0,
+        status: true,
+        message: "Registration succuss fully",
+        userID: users._id
+      });
+      next();
     } catch (error) {
       console.log("server err", error);
     }
@@ -96,18 +100,31 @@ export const otpverifyingHandler = async (req, res, next) => {
 };
 export const loginHandler = async (req, res) => {
   const { Email, password } = req.body;
-  const UsEmailExist = await usersmodal.find({ Email: Email });
-  if (!UsEmailExist) {
-    return res.status(403).json({ message: "Invalid Email , please enter a valid email or register with the email" });
-  }
- 
-  let MachPassword = bcrypt.compareSync(password, UsEmailExist[0].password);
-  console.log("MachPassword", MachPassword);
 
-  const userID = UsEmailExist[0]._id;
-  console.log("userID", userID);
-  const Token = Jwt.sign({ userID }, process.env.JWT_SECRET, { expiresIn: "1h" });
-  return res.status(200).cookie("token", String(Token), { maxAge: 100000000 }).json({ message: "login Succuss fully" });
+
+  const UsEmailExist = await usersmodal.find({ Email: Email });
+
+  if (UsEmailExist == []) {
+    console.log('your email not registered ! please register');
+    return res.status(403).json({ message: 'your email not registered ! please register' });
+  }
+  else if (!UsEmailExist[0].password) {
+    return res.status(401).json({ message: "Invalid Email , please enter a valid email or register with the email" });
+  }
+  else {
+    const MachPassword = bcrypt.compareSync(password, UsEmailExist[0].password);
+    console.log("MachPassword", MachPassword);
+    const userID = UsEmailExist[0]._id;
+    console.log("userID", userID);
+    const Token = Jwt.sign({ userID }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    res.status(200).cookie("token", String(Token), { maxAge: 3600000 })
+    res.json({
+      message: "login Succuss fully", errorcode: 0, status: true,
+      userID: userID,
+    })
+  }
+
+
 };
 
 // Middleware

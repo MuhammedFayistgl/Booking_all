@@ -26,7 +26,7 @@ const PhoneNvalidation = () => {
         <>
             <MuiTelInput id="filled-size-small"
                 {...!isValid && { error: true }}
-                label="Mubil Number" variant="filled" value={value} onChange={handleChange} />
+                label="Mubil Number" variant="filled"  required value={value} onChange={handleChange} />
         </>
     )
 }

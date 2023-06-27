@@ -1,9 +1,7 @@
+import BookingUserModel from '../models/BookinguserModel.js';
+import jwt from 'jsonwebtoken'
+
 export const bockingHandler = async (req, res) => {
-    // try {
-        
-    // } catch (error) {
-    //     console.log(error);
-    // }
-  console.log("halo");
-  console.log(req.body);
+console.log("req.userID",req.userID);
 };
+

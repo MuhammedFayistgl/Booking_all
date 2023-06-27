@@ -1,20 +1,25 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 
 import "./filterlist.scss";
 import { Box, Skeleton } from "@mui/material";
 import { useSelector } from "react-redux";
+import SkeletonCopnt from "../Skeleton/SkeletonCopnt";
 
 const Filterlist = ({ style }) => {
   const Data = useSelector((state) => state.HotelSlice.allHotals.data);
 
   const navigate = useNavigate();
+  const { params } = useParams()
 
   return (
     <>
       {Data ? (
-        Data.map((itm, index) => {
+        Data?.filter((data) => {
+          return (data.category == params)
+        })
+        .map((itm, index) => {
           return (
             <div key={index} className="searchItem">
               <img src={itm.profilImg} alt="" className={style ? "img-siz-dcrs" : "siImg"} />
@@ -22,7 +27,7 @@ const Filterlist = ({ style }) => {
               <div
                 className="siDesc"
                 onClick={() => {
-                  navigate("/hotel", { state: itm });
+                  navigate(`/hotel/${itm._id}`, { state: itm });
                 }}
               >
                 <h1 className={style ? "NameFountsiz" : "siTitle"}>{itm.name}</h1>
@@ -53,31 +58,7 @@ const Filterlist = ({ style }) => {
           );
         })
       ) : (
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <Skeleton height={200} width={170} />
-          <Box width={200}>
-            <Skeleton height={30} width="100%" />
-            <Skeleton height={20} width="60%" />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-            }}
-            width={200}
-          >
-            <Box>
-              <Skeleton height={20} width="100%" />
-              <Skeleton height={20} width="100%" />
-              <Skeleton height={20} width="100%" />
-            </Box>
-
-            <Box>
-              <Skeleton height={20} width="100%" />
-            </Box>
-          </Box>
-        </Box>
+        <SkeletonCopnt />
       )}
     </>
   );

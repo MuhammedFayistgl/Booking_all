@@ -14,14 +14,14 @@ const SummitBTN = () => {
     const vfyEmail = state?.Email?.isValid
     const vfyName = state?.FullName
     const vfyPhone = state?.Phone?.isValid
-
+    console.log()
     return (
         <ul className="form-style-1">
             <li>
-                {vfyEmail && vfyName && vfyPhone && (
                     <Tooltip title={<TooltipComponent />}>
                         <LoadingButton
-                            loading={false}
+                            loading={false} 
+                            disabled={!(vfyEmail&&vfyName&&vfyPhone)}                                      
                             loadingPosition="start"
                             type="submit"
                             value="Submit"
@@ -31,7 +31,6 @@ const SummitBTN = () => {
                             Submit
                         </LoadingButton>
                     </Tooltip>
-                )}
             </li>
         </ul>
     )

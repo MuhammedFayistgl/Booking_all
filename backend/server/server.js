@@ -1,19 +1,18 @@
 import mongoose from "mongoose";
 
 
-const Url = process.env.URL_MONGODB
-const connution = async () => {  
+const connution = async () => {
   try {
-   mongoose.set('strictQuery', true)
-     mongoose.connect( process.env.URL_MONGODB, {
-        useNewUrlParser: true, 
-        useUnifiedTopology: true
+    mongoose.set('strictQuery', true)
+    mongoose.connect(process.env.URL_MONGODB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     });
-    
-    
-    console.log(`Mongodb connection established ${ process.env.URL_MONGODB}`);
+
+
+    console.log(`Mongodb connection established`);
   } catch (error) {
-    console.log("connuction Erorr",error);
+    console.log("connuction Erorr", error);
     process.exit(1);
   }
 };

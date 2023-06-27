@@ -8,7 +8,7 @@ const EmailFilled = () => {
   const [isValid, setisValid] = useState(false)
   const Dispath = useDispatch();
   const state = useSelector((state) => state.userBocking)
-console.log(state.bookDeatilse)
+  
   const verifyConform = (value) => {
     if (!isValid == true) {
       Dispath(setEmail({ Email: value, isValid: !isValid }))
@@ -31,6 +31,7 @@ console.log(state.bookDeatilse)
         label="Email address"
         variant="filled"
         name="Email"
+        required
         onChange={validation}
       />
     </>

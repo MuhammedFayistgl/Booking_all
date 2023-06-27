@@ -16,7 +16,6 @@ root.render(
         <CustomProvider   theme="dark">
           <App />
         </CustomProvider>
-
       </Provider>
     </CookiesProvider>
   </React.StrictMode>

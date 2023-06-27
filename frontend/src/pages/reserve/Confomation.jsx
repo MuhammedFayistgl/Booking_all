@@ -9,12 +9,13 @@ import { Container, Step, StepLabel, Stepper } from "@mui/material";
 import Searchbox from "../../components/Searchbox/Searchbox";
 import { useSelector } from "react-redux";
 import BockingDeatials from "../../components/Bocking Deatials/BockingDeatials";
-import { useLocation ,useNavigate } from "react-router-dom";
+import { useLocation ,useNavigate, useParams } from "react-router-dom";
 import Activstep from "../../components/ActiveStep/Activstep";
 // import { useLocation } from "react-router-dom";
 
 const Confomation = () => {
-  const {state} = useLocation()
+  const { _id } = useParams()
+  const state = useSelector((state) => state.HotelSlice.allHotals.data)?.filter(state => { return state._id == _id })[0]
 
 
  
@@ -45,7 +46,7 @@ const Confomation = () => {
 
               <BockingDeatials />
 
-              <div className="price-details box-container  bg-light">
+              <div className="price-details box-container  ">
                 <div className="price-container  ">
                   <h5>Price</h5>
                   <span>₹{state?.amount}</span>

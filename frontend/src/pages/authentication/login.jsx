@@ -9,17 +9,17 @@ import { setloginPassword, setloginUsername } from "../../Reducs/LoginSlice";
 import { Button } from "rsuite";
 import { loginWithEmail } from "../../Reducs/extraSlice";
 import { Toaster } from "react-hot-toast";
+import { useCookies } from "react-cookie";
 
-const Login = ({Order}) => {
+const Login = ({ Order }) => {
   const dispach = useDispatch();
   const state = useSelector((state) => state.loginSlice);
-  const Navigate = useNavigate()
-
-  if(state.login  ){
-    Navigate('/')
+  const History = "";
+  const [cookies, setCookie] = useCookies();
+  const Navigate = useNavigate();
+  if (cookies.token) {
+    Navigate("/");
   }
-  //! funtions
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispach(loginWithEmail(state?.loginData));
@@ -27,7 +27,8 @@ const Login = ({Order}) => {
   return (
     <>
       <Navbar />
-      <Toaster/>
+      <Toaster />
+
       <div className="login-login">
         <div className="login-app">
           <div className="login-bg"></div>
@@ -41,17 +42,15 @@ const Login = ({Order}) => {
               </label>
             </header>
             <input style={{ display: "none" }} type="file" name="file" id="file" />
-
             <div className="login-inputs">
-            {state?.emailErr && <span className="errr"> please enter valid Email</span>}
+              {state?.emailErr && <span className="errr"> please enter valid Email</span>}
               <input
                 required
                 value={state?.Email}
                 name="Email"
                 type="text"
                 placeholder="Email"
-                onChange={(e) => dispach(setloginUsername({[e.target.name]: e.target.value }))}
-                
+                onChange={(e) => dispach(setloginUsername({ [e.target.name]: e.target.value }))}
               />
               <input
                 required
@@ -59,7 +58,7 @@ const Login = ({Order}) => {
                 name="password"
                 type="password"
                 placeholder="password"
-                onChange={(e) => dispach(setloginPassword({[e.target.name]: e.target.value }))}
+                onChange={(e) => dispach(setloginPassword({ [e.target.name]: e.target.value }))}
               />
               <Button
                 loading={state?.loading}

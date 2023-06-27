@@ -9,14 +9,15 @@ import path from "path";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 
+
 const app = express();
 
 
 app.use(function (req, res, next) {
 
-  var allowedDomains = ['http://localhost:5173','http://localhost:5174' ];
+  var allowedDomains = ['http://localhost:5173', 'http://localhost:5174'];
   var origin = req.headers.origin;
-  if(allowedDomains.indexOf(origin) > -1){
+  if (allowedDomains.indexOf(origin) > -1) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
 
@@ -35,11 +36,12 @@ app.use(express.static("public"));
 
 connutionDB();
 
-console.log(path.dirname(""));
+
 
 app.get("/", (req, res) => {
   res.send("welcome to node js ");
 });
+
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 

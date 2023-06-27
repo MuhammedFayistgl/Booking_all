@@ -19,13 +19,22 @@ const userbocking = createSlice({
             state.bookDeatilse.Phone = action.payload
             // console.log({...state.bookDeatilse.Phone, ...action.payload});
         },
-        setEmail: (state, action) => { state.bookDeatilse.Email = action.payload ,console.log(action) },
+        setEmail: (state, action) => { state.bookDeatilse.Email = action.payload, console.log(action) },
         setBoocking: (state, action) => { },
     },
     extraReducers: {
-        [BockingHandler.fulfilled]: (state, action) => { state.Order = action.payload },
-        [BockingHandler.pending]: (state, action) => { return toast.loading(true) },
-        [BockingHandler.rejected]: (state, action) => { return toast.loading(false) },
+        [BockingHandler.fulfilled]: (state, action) => {
+            state.Order = action.payload
+            toast.success(action.payload.data?.message)
+           // console.log('action.payload',action.payload);
+
+        },
+        [BockingHandler.pending]: (state, action) => {
+
+        },
+        [BockingHandler.rejected]: (state, action) => {
+
+        },
     }
 
 })

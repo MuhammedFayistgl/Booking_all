@@ -1,10 +1,12 @@
 import React from "react";
 import "./card.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
+import { useSelector } from "react-redux";
 
 const Card = ({ seavblbutton }) => {
-  const { state } = useLocation();
+  const { _id } = useParams()
+  const state = useSelector((state) => state.HotelSlice.allHotals.data)?.filter(state => { return state._id == _id })[0]
   return (
     <>
       <div className="searchItem">

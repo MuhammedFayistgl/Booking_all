@@ -11,9 +11,10 @@ import {
   crateNewOTP,
 } from "../controller/userController.js";
 
-import { protect } from "../middlewere/authmiddlwer.js";
+
 import { bockingHandler } from "../controller/Bockinguser.js";
 import {  registergenrteOtpHandler ,otpverifyingHandler,loginHandler } from "../controller/userHelper.js";
+import { authentcationMiddlwer } from "../middlewere/authmiddlwer.js";
 const router = express.Router();
 
 // router.post("/", registerUser);
@@ -25,10 +26,9 @@ const router = express.Router();
 // router.post("/otpVerification", signup);
 // router.post("/userdetealsVerification", userdetealsVerification);
 // router.post("/signup", crateNewOTP);
-router.post("/bocking", bockingHandler);
-router.post("/getotp",registergenrteOtpHandler);
-router.post("/otpverifying",otpverifyingHandler);
-
+router.post("/bocking",authentcationMiddlwer,  bockingHandler);
+router.post("/getotp", registergenrteOtpHandler);
+router.post("/otpverifying",  otpverifyingHandler);
 router.post ('/userlogin',loginHandler)
-
+router.post ('/Loginverify', authentcationMiddlwer);
 export default router;

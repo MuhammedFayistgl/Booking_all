@@ -89,7 +89,7 @@ const register = createSlice({
     [otpverificationserver.fulfilled]: (state, action) => {
       state.loding = false;
       toast.success(action.payload.message);
-      state.otpVerification = true
+      state.userID = action.payload.userID
       console.log('action.payload',action.payload)
     },
   },

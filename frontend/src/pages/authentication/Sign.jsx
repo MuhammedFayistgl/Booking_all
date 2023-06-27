@@ -16,15 +16,14 @@ const Sign = () => {
   const dispach = useDispatch();
   const Navigate = useNavigate();
   const state = useSelector((state) => state.register);
-console.log(state?.Input )
+  console.log(state?.Input);
   //** input Data Handler fun */
- if (state.otpStatus) {
-      Navigate("/otp");
-    }
+  if (state.otpStatus) {
+    Navigate("/otp");
+  }
   const inputDataHandler = (e) => {
     e.preventDefault();
     dispach(registeruser(state.Input));
-   
   };
 
   return (
@@ -42,7 +41,7 @@ console.log(state?.Input )
               {state?.nameErr && <span className="errr"> User name Ender more than 2 digits</span>}
 
               <input
-               required
+                required
                 onChange={(e) => dispach(setInputUserNameHandler({ [e.target.name]: e.target.value }))}
                 value={state?.Input?.UserName}
                 name="UserName"
@@ -73,7 +72,7 @@ console.log(state?.Input )
               />
               {state?.passwordErr && <span className="errr"> Passwors must be more than 6 digits</span>}
               <input
-               required
+                required
                 onChange={(e) => dispach(setInputPasswordHandler({ [e.target.name]: e.target.value }))}
                 value={state?.Input.password}
                 name="password"
@@ -83,15 +82,14 @@ console.log(state?.Input )
               />
 
               <p className="light"></p>
-             
+
               <Button
                 loading={state?.loding}
                 color="cyan"
                 className="submit "
-                disabled={state?.nameErr | state?.emailErr |state?.mobNoErr | state?.passwordErr | state?.Input }
+                disabled={state?.nameErr | state?.emailErr | state?.mobNoErr | state?.passwordErr | state?.Input}
                 type="submit"
                 appearance="primary"
-              
               >
                 Block
               </Button>
