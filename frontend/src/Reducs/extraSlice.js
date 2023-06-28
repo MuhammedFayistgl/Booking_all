@@ -58,8 +58,8 @@ export const dataCollection = createAsyncThunk(
 // Booking 
 export const BockingHandler = createAsyncThunk(
   'Bocking',
-  async (BoplingData) => {
-    const res = await axios.post('http://localhost:5000/user/bocking', { BoplingData }).then((response) => {
+  async (Booking_Data) => {
+    const res = await axios.post('http://localhost:5000/user/bocking', { Booking_Data }).then((response) => {
       return response
     }).catch((err) => toast.error(err));
     return res

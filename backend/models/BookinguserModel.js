@@ -7,7 +7,7 @@ const userBooking = mongoose.Schema({
         default: Date.now()
     },
     Time: {
-        type: "Date",
+        type: "String",
         timestamps: true,
     },
     orderdID: {
@@ -34,7 +34,7 @@ const userBooking = mongoose.Schema({
         required: [true, 'full name required']
     },
     Phone: {
-        type: 'Number',
+        type: 'String',
         required: [true, 'phone Number required']
     }
 })

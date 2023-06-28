@@ -1,28 +1,34 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 import "./login.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/navbar/Navbar";
-import { setloginPassword, setloginUsername } from "../../Reducs/LoginSlice";
+import { setCookies, setloginPassword, setloginUsername } from "../../Reducs/LoginSlice";
 import { Button } from "rsuite";
 import { loginWithEmail } from "../../Reducs/extraSlice";
 import { Toaster } from "react-hot-toast";
 import { useCookies } from "react-cookie";
 
-const Login = ({ Order }) => {
+
+const Login = () => {
+  const [cookies, setCookie] = useCookies();
   const dispach = useDispatch();
   const state = useSelector((state) => state.loginSlice);
-  const History = "";
-  const [cookies, setCookie] = useCookies();
-  const Navigate = useNavigate();
-  if (cookies.token) {
-    Navigate("/");
-  }
+const navigate = useNavigate()
+
+if(state.cookie){
+  navigate('/')
+}
+
+
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispach(loginWithEmail(state?.loginData));
+   
+   
   };
   return (
     <>

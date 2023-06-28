@@ -4,10 +4,12 @@ import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { useCookies } from "react-cookie";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { setCookies } from "../../../Reducs/LoginSlice";
+import { useDispatch } from "react-redux";
 
 const Confirmalertbutton = () => {
   const [cookies, setCookie, removCookie] = useCookies();
-
+  const dispach = useDispatch();
   return (
     <>
       <button
@@ -23,6 +25,7 @@ const Confirmalertbutton = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               removCookie("token");
+              dispach(setCookies());
               Swal.fire("Logout!", "Your Successfully Logouted !.", "success");
             }
           });

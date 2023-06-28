@@ -21,6 +21,8 @@ import { dataCollection } from "./Reducs/extraSlice";
 import { useCookies } from "react-cookie";
 import Privetrouts from "./components/Privet.route/Privetrouts";
 import ProtectOutlet from "./pages/authentication/ProtectOutlet";
+import History from "./components/History/History";
+import AuthOutlet from "./pages/authentication/AuthOutlet";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -30,16 +32,18 @@ function App() {
   const dispach = useDispatch();
   // all data collect server  then dispatche through this function 'HotelApiDataSeter'
   useEffect(() => {
-    dispach(setCookies());
     dispach(dataCollection());
-  }, []);
+  }, [cookies]);
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signUp" element={<Sign />} />
-        <Route path="/otp" element={<Otp />} />
+      <Routes history={History}>
+       
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<Sign />} />
+          <Route path="/otp" element={<Otp />} />
+       
+
         <Route path="/" element={<Home />} />
         <Route path="/hotelslist" element={<List />} />
         <Route path="/filterhotels/:params" element={<HotelList />} />

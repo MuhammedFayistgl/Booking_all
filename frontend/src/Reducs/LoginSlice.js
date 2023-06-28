@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginWithEmail } from "./extraSlice";
 import { toast } from "react-hot-toast";
-import { Navigate, redirect } from "react-router-dom";
+
+
 
 
 const state = {
@@ -24,7 +25,8 @@ const loginSlice = createSlice({
       state.loginData = { ...state.loginData, ...action.payload };
     },
     setCookies: (state, action) => {
-      state.cookie = document.cookie
+      state.cookie = null
+      state.userID = null;
     }
   },
   extraReducers: {
@@ -39,6 +41,14 @@ const loginSlice = createSlice({
     },
     [loginWithEmail.fulfilled]: (state, action) => {
       state.userID = action.payload.userID
+      let cookies = {};
+      const cookiesArray = document.cookie.split(';');
+      cookiesArray.forEach((cookie) => {
+        const [key, value] = cookie.trim().split('=');
+        cookies[key] = value;
+      });
+      const token = cookies?.token
+      state.cookie = token
       toast.success(action.payload.message)
       state.loading = false;
       console.log('action.paylod', action.payload);

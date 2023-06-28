@@ -18,23 +18,16 @@ export const authentcationMiddlwer = async (req, res, next) => {
         const token = cookies?.token
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         if (decoded.userID) {
-            console.log('decoded', decoded)
-            res.status(200).json({
-                errorcode: 0,
-                status: true,
-                message: 'Login successful',
-                isLogdin: true,
-                userID: decoded.userID,
-                expire: decoded.exp
-            });
-            req.userID = decoded.userID;
+            console.log('Middlwer passed Successfully')
+            req.userID=decoded.userID
             next()
         } else {
+            console.log('Unauthorized  requst ! ')
             return res.status(401).json({
-                errorcode: 0,
-                status: false,
-                message: 'user not found . please Sign up..',
-                isLogdin: true,
+                errorcode: 1,
+                status: true,
+                message: 'User not found . please Login up..',
+                isLogdin: false,
             });
         }
     } catch (error) {
