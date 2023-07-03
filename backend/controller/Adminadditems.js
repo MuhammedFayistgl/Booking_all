@@ -1,5 +1,7 @@
 import fs from 'fs';
 import apiData from "../models/apiModal.js";
+import BookingUserModel from '../models/BookinguserModel.js'
+
 
 /** Admin uplode informations post to databace */
 export const uplodeDatabace = async (req, res) => {
@@ -191,6 +193,20 @@ export const extraimageupload = async (req, res) => {
   res.status(200).json({ status: true, message: 'image uplode success fully' })
 }
 
+export const userBookingGetadminHandler = async (req, res) => {
+  console.log('userBookingGetadminHandler');
+  try {
+    const Booked = await BookingUserModel.find()
+    return res.status(200).json({
+      errorcode: 0,
+      status: false,
+      message: 'Booked item found successfully',
+      data: Booked
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-
+export const loginadmin = async (req, res) => { }
 

@@ -25,35 +25,32 @@ import History from "./components/History/History";
 import AuthOutlet from "./pages/authentication/AuthOutlet";
 
 function App() {
-  axios.defaults.withCredentials = true;
+	axios.defaults.withCredentials = true;
 
-  const [cookies, setCookie] = useCookies();
+	const [cookies, setCookie] = useCookies();
 
-  const dispach = useDispatch();
-  // all data collect server  then dispatche through this function 'HotelApiDataSeter'
-  useEffect(() => {
-    dispach(dataCollection());
-  }, [cookies]);
+	const dispach = useDispatch();
+	// all data collect server  then dispatche through this function 'HotelApiDataSeter'
+	useEffect(() => {
+		dispach(dataCollection());
+	}, [cookies]);
 
-  return (
-    <BrowserRouter>
-      <Routes history={History}>
-       
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<Sign />} />
-          <Route path="/otp" element={<Otp />} />
-       
-
-        <Route path="/" element={<Home />} />
-        <Route path="/hotelslist" element={<List />} />
-        <Route path="/filterhotels/:params" element={<HotelList />} />
-        <Route path="/hotel/:_id" element={<Hotel />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/confometon/:_id" element={<Confomation />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<Routes history={History}>
+				<Route path="/login" element={<Login />} />
+				<Route path="/signUp" element={<Sign />} />
+				<Route path="/otp" element={<Otp />} />
+				<Route path="/" element={<Home />} />
+				<Route path="/hotelslist" element={<List />} />
+				<Route path="/filterhotels/:params" element={<HotelList />} />
+				<Route path="/hotel/:_id" element={<Hotel />} />
+				<Route element={<ProtectedRoute />}>
+					<Route path="/confometon/:_id" element={<Confomation />} />
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;

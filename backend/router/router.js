@@ -12,7 +12,7 @@ import {
 } from "../controller/userController.js";
 
 
-import { bockingHandler } from "../controller/Bockinguser.js";
+import { bockingHandler, getmyBooking } from "../controller/Bockinguser.js";
 import {  registergenrteOtpHandler ,otpverifyingHandler,loginHandler } from "../controller/userHelper.js";
 import { authentcationMiddlwer } from "../middlewere/authmiddlwer.js";
 const router = express.Router();
@@ -31,4 +31,5 @@ router.post("/getotp", registergenrteOtpHandler);
 router.post("/otpverifying",  otpverifyingHandler);
 router.post ('/userlogin',loginHandler)
 router.post ('/Loginverify', authentcationMiddlwer);
+router.get ('/getmyBooking', authentcationMiddlwer,getmyBooking);
 export default router;

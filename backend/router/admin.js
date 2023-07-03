@@ -8,7 +8,10 @@ import {
   deleteimage,
   editimage,
   extraimageupload,
+  userBookingGetadminHandler,
+  loginadmin,
   } from "../controller/adminadditems.js";
+import { signupadmin } from "../controller/adminRegister.js";
 
 const router = express.Router();
 const multerStorage = multer.diskStorage({
@@ -29,5 +32,8 @@ router.post("/imageupload", upload.single("file"), imageupload);
 router.post("/deleteimage", deleteimage);
 router.post("/editimage", editimage);
 router.post("/extraimageupload", upload.array("filse", 15), extraimageupload);
+router.get("/userBookingGetadmin",  userBookingGetadminHandler);
+router.post("/loginadmin",  loginadmin);
+router.post("/signupadmin",  signupadmin);
 
 export default router;

@@ -64,3 +64,10 @@ export const BockingHandler = createAsyncThunk(
     }).catch((err) => toast.error(err));
     return res
   })
+export const getmyBooking = createAsyncThunk("getmyBooking",
+  async () => {
+    const res = await axios.get('http://localhost:5000/user/getmyBooking')
+      .then((response) => { return response.data }).catch((err) => toast.error(err));
+      return res 
+  }
+)

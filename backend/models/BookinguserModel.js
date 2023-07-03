@@ -14,6 +14,9 @@ const userBooking = mongoose.Schema({
         type: 'String',
         required: [true, 'orderdID required ! orderdID missing !!'],
     },
+    userID:{
+        type: 'String',
+    },
     endDate: {
         type: 'Date',
         required: [true, 'endDate required ! please select endDate']
@@ -27,7 +30,8 @@ const userBooking = mongoose.Schema({
     },
     Email: {
         type: 'String',
-        required: [true, 'email required']
+        required: [true, 'email required'],
+        unique: true,
     },
     FullName: {
         type: 'String',

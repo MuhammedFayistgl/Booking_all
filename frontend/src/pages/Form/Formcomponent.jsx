@@ -9,7 +9,7 @@ import { FormSummitStatus } from '../../Reducs/SearchSlice';
 import { BockingHandler } from '../../Reducs/extraSlice';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
-import swal from 'sweetalert';
+
 
 const Formcomponent = () => {
     const Dispath = useDispatch();
@@ -41,10 +41,8 @@ const Formcomponent = () => {
         else if (!BookingData.Phone) { toast.error("Please Ender Your valid phoneNumber") }
         else {
 
-            swal("Confirmed!", "You'll get an email with your booking confirmation!", "success");
             Dispath(FormSummitStatus(2));
-            Dispath(BockingHandler(BookingData));
-            toast.success(`your boocking Succussfully`);
+            Dispath(BockingHandler(BookingData));  
         }
     }
 

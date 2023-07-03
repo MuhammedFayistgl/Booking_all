@@ -3,19 +3,20 @@ import "./navbar.scss";
 import Drower from "../Drower/Drower";
 import { Box } from "@mui/material";
 import { Button, ButtonToolbar } from "rsuite";
-import { DrowerSetOpen } from "../../Reducs/DrowerSettings";
 import { useDispatch, useSelector } from "react-redux";
 import { TbBrandBooking } from "react-icons/tb";
 import OnlineStatus from "../OnlineStatus/OnlineStatus";
 import { useCookies } from "react-cookie";
 import Confirmalertbutton from "./ConfrmlogoutBTN/Confirmloginalert";
+import { DrowerSetOpen } from "../../Reducs/userBockingSlice";
+import { getmyBooking } from "../../Reducs/extraSlice";
 
 const Navbar = ({ wlcom }) => {
   let navigate = useNavigate();
   const dispath = useDispatch();
   const [cookies, setCookie, removCookie] = useCookies();
 
-  const BookData = useSelector((state) => state.DrowerSettings.BockingData);
+  const BookData =true
 
   return (
     <div className="navbar">
@@ -26,7 +27,7 @@ const Navbar = ({ wlcom }) => {
         <div className="navItems">
           {BookData && (
             <ButtonToolbar style={{ position: "absolute", right: "114%" }}>
-              <Button onClick={() => dispath(DrowerSetOpen(true))} color="green" appearance="primary" endIcon={<TbBrandBooking />}>
+              <Button onClick={() => dispath(DrowerSetOpen(true),  dispath(getmyBooking()))} color="green" appearance="primary" endIcon={<TbBrandBooking />}>
                 Your Booking
               </Button>
             </ButtonToolbar>

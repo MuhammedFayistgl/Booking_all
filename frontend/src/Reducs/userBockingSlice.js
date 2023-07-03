@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { BockingHandler } from './extraSlice'
+import { BockingHandler, getmyBooking } from './extraSlice'
 import { toast } from 'react-hot-toast'
+import swal from 'sweetalert';
 
 const initialState = {
-    userID: 'ertuiyoi489750y',
     bookDeatilse: {
-    }
+    },
+    myBookDeatilse: {},
 
 }
 
@@ -20,13 +21,22 @@ const userbocking = createSlice({
             // console.log({...state.bookDeatilse.Phone, ...action.payload});
         },
         setEmail: (state, action) => { state.bookDeatilse.Email = action.payload, console.log(action) },
-        setBoocking: (state, action) => { },
+        DrowerSetOpen: (state, action) => {
+            state.DrowerOpen = action.payload;
+        },
+
     },
     extraReducers: {
         [BockingHandler.fulfilled]: (state, action) => {
             state.Order = action.payload
-            toast.success(action.payload.data?.message)
-           // console.log('action.payload',action.payload);
+            if (action.payload.orderstatus) {
+                swal("Confirmed!", action.payload.message, "success");
+            }
+            else if (!action.payload.orderstatus) {
+                swal("Sorry ", action.payload.message, 'error');
+            }
+
+            console.log('action.payload', action.payload);
 
         },
         [BockingHandler.pending]: (state, action) => {
@@ -35,8 +45,15 @@ const userbocking = createSlice({
         [BockingHandler.rejected]: (state, action) => {
 
         },
+        //    getmyBooking
+        [getmyBooking.pending]: (state, action) => {},
+        [getmyBooking.rejected]: (state, action) => {},
+        [getmyBooking.fulfilled]: (state, action) => {
+            state.myBookDeatilse = action.payload
+            console.log(action.payload);
+        },
     }
 
 })
-export const { setUseername, setPhonnumber, setEmail, setBoocking, } = userbocking.actions
+export const { setUseername, setPhonnumber, setEmail, DrowerSetOpen } = userbocking.actions
 export default userbocking.reducer
