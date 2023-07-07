@@ -27,39 +27,42 @@ export const bockingHandler = async (req, res) => {
             message: 'Your Booking  already  Reserved Please Choose a new Item'
         })
     }
-    else if (!userExist) {
-        return res.status(200).json({
-            errorcode: 1,
-            status: true,
-            orderstatus: false,
-            message: 'Orderd user not registerd pleass register'
-        })
-    } else if (!req.userID) {
+    // else if (!userExist) {
+    //     return res.status(200).json({
+    //         errorcode: 1,
+    //         status: true,
+    //         orderstatus: false,
+    //         message: 'Orderd user not registerd pleass register'
+    //     })
+    // } 
+    else if (!req.userID) {
         return res.status(401).json({
             errorcode: 1,
             status: true,
             orderstatus: false,
             message: 'Please Register or Login'
         })
+    } else {
+        try {
+            const booking_Data = await new BookingUserModel({
+                Date, Time, orderdID, userID:req.userID, endDate,
+                startDate, options, Email, FullName, Phone
+            }).save()
+
+            return res.status(200).json({
+                errorcode: 0,
+                status: false,
+                orderstatus: true,
+                message: 'Booking saved successfully'
+            })
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
-    try {
-        const booking_Data = new BookingUserModel({
-            Date, Time, orderdID, userID: req.userID, endDate,
-            startDate, options, Email, FullName, Phone
-        })
 
-        booking_Data = await booking_Data.save()
-        return res.status(200).json({
-            errorcode: 0,
-            status: false,
-            orderstatus: true,
-            message: 'Booking saved successfully'
-        })
-
-    } catch (error) {
-        console.log(error);
-    }
 
 
 };
@@ -89,9 +92,9 @@ export const getmyBooking = async (req, res) => {
                     data: Booked
                 })
             }
-            console.log(Booked);
+
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
     console.log('req.userID', req.userID);

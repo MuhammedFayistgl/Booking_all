@@ -7,7 +7,7 @@ const Activstep = () => {
   return (
     <Box sx={{ display: "flex", justifyContent: "center", position: "sticky", top: 0, zIndex: 999 }}>
       <Paper style={{ background: "white", width: "75%", padding: 5, marginBottom: 10 }}>
-        <Stepper style={{ marginTop: 30, marginBottom: 20 }} activeStep={State.formSummit.status} alternativeLabel>
+        <Stepper style={{ marginTop: 10, marginBottom: 4 }} activeStep={State.formSummit.status} alternativeLabel>
           <Step>
             <StepLabel>{"Ready to Bocking"}</StepLabel>
           </Step>

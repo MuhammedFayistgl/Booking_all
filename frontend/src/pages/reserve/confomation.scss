@@ -41,26 +41,20 @@
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    // gap: 16px;
     margin-bottom: 20px;
 }
 
 .bocking-deatealse {
     display: flex;
     flex-direction: column;
-    max-width: max-content;
-    button{
-        color: #006ce4;
-        &:hover{
-            background-color: #006ce43d;
-            color: #006ce4;
-        }
-    }
+    max-width: 100%;
+   
     .deteals{
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 20px;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: flex-start;
+        // gap: 1%;
     
         hr{
          
@@ -71,12 +65,12 @@
 }
 
 .all-wrapper {
-    display: flex;
-    flex-direction: row;
-    margin-top: 50px;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-direction: row;
+    // margin-top: 50px;
+    // gap: 16px;
+    // justify-content: center;
+    // flex-wrap: wrap;
     .left {
       
     span{

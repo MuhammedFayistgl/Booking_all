@@ -60,7 +60,7 @@ export const BockingHandler = createAsyncThunk(
   'Bocking',
   async (Booking_Data) => {
     const res = await axios.post('http://localhost:5000/user/bocking', { Booking_Data }).then((response) => {
-      return response
+      return response.data
     }).catch((err) => toast.error(err));
     return res
   })

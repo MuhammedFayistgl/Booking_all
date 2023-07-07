@@ -1,9 +1,12 @@
 .hotellist-container {
     display: flex;
     justify-content: center;
-    background-color: #f0eeee;
+    // background-color: #6e6e6e;
 }
-
+.headerSearchInput {
+    border: none;
+    outline: none;
+  }
 .hotellist-headng {
     width: 100%;
     max-width: 1024px;
@@ -48,14 +51,11 @@
     justify-content: center;
     margin-top: 50px;
 }
-.filterd-items-wraper{
-    width: 100%;
-    max-width: 1024px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+// .filterd-items-wraper{
+//     // width: 100%;
+//     // max-width: 1024px;
+    
+// }
 .button-see-more{
     display: flex;
     justify-content: center;

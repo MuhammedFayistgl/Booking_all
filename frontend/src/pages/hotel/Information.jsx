@@ -10,7 +10,7 @@ const Information = () => {
             <h1 className="hotelTitle">{state?.name}</h1>
             <div className="hotelAddress">
                 {/* <FontAwesomeIcon icon={faLocationDot} /> */}
-                <i class="fa-solid fa-location-dot"></i>
+                <i className="fa-solid fa-location-dot"></i>
                 <span>{state?.place}</span>
             </div>
             <span className="hotelDistance">Excellent location – 500m from center</span>

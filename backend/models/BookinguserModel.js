@@ -31,7 +31,7 @@ const userBooking = mongoose.Schema({
     Email: {
         type: 'String',
         required: [true, 'email required'],
-        unique: true,
+        unique: false, 
     },
     FullName: {
         type: 'String',

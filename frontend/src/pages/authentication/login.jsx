@@ -19,11 +19,8 @@ const Login = () => {
 const navigate = useNavigate()
 
 if(state.cookie){
-  navigate('/')
+  navigate(-0)
 }
-
-
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispach(loginWithEmail(state?.loginData));

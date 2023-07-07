@@ -1,41 +1,30 @@
-import { TextField } from '@mui/material';
-import validator from 'email-validator'
-import React, { useState } from 'react'
-import { setEmail } from '../../Reducs/userBockingSlice';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { TextField } from "@mui/material";
+import validator from "email-validator";
+import React from "react";
+import { setEmail } from "../../Reducs/userBockingSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Input } from "rsuite";
+import "./form.scss";
 const EmailFilled = () => {
-  const [isValid, setisValid] = useState(false)
-  const Dispath = useDispatch();
-  const state = useSelector((state) => state.userBocking)
-  
-  const verifyConform = (value) => {
-    if (!isValid == true) {
-      Dispath(setEmail({ Email: value, isValid: !isValid }))
-    }
-  } 
+	const Dispath = useDispatch();
+	const state = useSelector((state) => state.userBocking.bookDeatilse);
 
-  const validation = (e) => {
+	return (
+		<>
+			<TextField
+			sx={{color:'white'}}
+				{...(!state?.Email?.isValid && { error: true })}
+				id="outlined-error"
+				label="Email address"
+				name="Email"
+				size="small"
+				
+				onChange={(e) => Dispath(setEmail({ Email: e.target.value, isValid: validator.validate(e.target.value) }))}
+				value={state?.Email?.Email}
+			/>
+			
+		</>
+	);
+};
 
-    setisValid(validator.validate(e.target.value));  //   isValid  = boolean
-    verifyConform(e.target.value)
-
-  }
-  return (
-    <>
-      <TextField
-        size="small"
-        value={state?.Email?.Email}
-        {...!isValid && { error: true }}
-        id="filled-error"
-        label="Email address"
-        variant="filled"
-        name="Email"
-        required
-        onChange={validation}
-      />
-    </>
-  )
-}
-
-export default EmailFilled
+export default EmailFilled;

@@ -82,11 +82,11 @@
 
 .hotelDetailsPrice {
   flex: 1;
-  background-color: #ebf3ff;
+  /* background-color: #ebf3ff; */
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 5px;
 }
 
 .hotelDetailsPrice > h1 {

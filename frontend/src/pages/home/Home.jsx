@@ -1,36 +1,45 @@
-import { useEffect } from "react";
-import Featured from "../../components/featured/Featured";
-import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
-import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
-import MailList from "../../components/mailList/MailList";
-import Navbar from "../../components/navbar/Navbar";
-import PropertyList from "../../components/propertyList/PropertyList";
+import { Suspense, lazy, useEffect } from "react";
+const Navbar = lazy(() => import("../../components/navbar/Navbar"));
+const Featured = lazy(() => import("../../components/featured/Featured"));
+const FeaturedProperties = lazy(() => import("../../components/featuredProperties/FeaturedProperties"));
+const Footer = lazy(() => import("../../components/footer/Footer"));
+const Header = lazy(() => import("../../components/header/Header"));
+const MailList = lazy(() => import("../../components/mailList/MailList"));
+const PropertyList = lazy(() => import("../../components/propertyList/PropertyList"));
+
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "./home.css";
 
-const Home = () => {
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, []);
+import { Box, Container, Typography } from "@mui/material";
+import { Loader } from "rsuite";
 
-  return (
-    <div>
-      <Navbar />
-      <Header />
-      <div className="homeContainer">
-        <Featured />
-        <h1 className="homeTitle">Browse by property type</h1>
-        <PropertyList />
-        <h1 className="homeTitle">Homes guests love</h1>
-        <FeaturedProperties />
-        <MailList />
-       
-        <Footer />
-      </div>
-    </div>
-  );
+const Home = () => {
+	useEffect(() => {
+		Aos.init({ duration: 2000 });
+	}, []);
+
+	return (
+		<>
+		
+				<Navbar />
+				<Header />
+				<Box className="homeContainer">
+					<Featured />
+					<Typography variant="h5" component="h5" className="homeTitle">
+						Browse by property type
+					</Typography>
+					<PropertyList />
+					<Typography variant="h5" component="h5" className="homeTitle">
+						Homes guests love
+					</Typography>
+					<FeaturedProperties />
+					<MailList />
+					<Footer />
+				</Box>
+	
+		</>
+	);
 };
 
 export default Home;

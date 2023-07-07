@@ -12,9 +12,6 @@ export const signupadmin = async (req, res) => {
         return res.status(200).json({ message: "please enter all fields" });
     } else {
         const HashPassword = bcrypt.hashSync(password, 10);
-
-
-
         try {
             const newadmin = await new adminModal({
                 username,

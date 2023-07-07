@@ -1,5 +1,6 @@
 import "./featuredProperties.css";
 
+
 const FeaturedProperties = () => {
   return (
     <div data-aos="fade-down" className="fp">

@@ -10,9 +10,10 @@ const Card = ({ seavblbutton }) => {
   return (
     <>
       <div className="searchItem">
-        <img src={state?.profilImg} alt="" className="siImg" />
+      
         <div className="siDesc">
-          <h1 className="siTitle">{state?.name}</h1>
+        <img src={state?.profilImg} alt="" className="siImg" />
+          <h1 style={{lineHeight:1}} className="siTitle">{state?.name}</h1>
           <span className="siDistance">{`hhh from center`}</span>
           <span className="siTaxiOp">Free airport taxi</span>
           <span className="siSubtitle">Studio Apartment with Air conditioning</span>

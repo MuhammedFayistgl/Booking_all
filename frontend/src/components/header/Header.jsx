@@ -19,24 +19,24 @@ const Header = ({ type }) => {
       <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
-            <i class="fa-solid fa-bed"></i>
+            <i className="fa-solid fa-bed"></i>
 
             <span>Stays</span>
           </div>
           <div className="headerListItem">
-            <i class="fa-sharp fa-solid fa-plane"></i>
+            <i className="fa-sharp fa-solid fa-plane"></i>
             <span>Flights</span>
           </div>
           <div className="headerListItem">
-            <i class="fa-sharp fa-solid fa-car"></i>
+            <i className="fa-sharp fa-solid fa-car"></i>
             <span>Car rentals</span>
           </div>
           <div className="headerListItem">
-            <i class="fa-solid fa-bed"></i>
+            <i className="fa-solid fa-bed"></i>
             <span>Attractions</span>
           </div>
           <div className="headerListItem">
-            <i class="fa-sharp fa-solid fa-taxi"></i>
+            <i className="fa-sharp fa-solid fa-taxi"></i>
             <span>Airport taxis</span>
           </div>
         </div>

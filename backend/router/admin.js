@@ -12,6 +12,7 @@ import {
   loginadmin,
   } from "../controller/adminadditems.js";
 import { signupadmin } from "../controller/adminRegister.js";
+import { loginAdmin } from "../controller/adminLogin.js";
 
 const router = express.Router();
 const multerStorage = multer.diskStorage({
@@ -33,7 +34,7 @@ router.post("/deleteimage", deleteimage);
 router.post("/editimage", editimage);
 router.post("/extraimageupload", upload.array("filse", 15), extraimageupload);
 router.get("/userBookingGetadmin",  userBookingGetadminHandler);
-router.post("/loginadmin",  loginadmin);
+router.post("/loginadmin",  loginAdmin);
 router.post("/signupadmin",  signupadmin);
 
 export default router;

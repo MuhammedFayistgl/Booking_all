@@ -1,12 +1,13 @@
-import { useState } from "react";
+
 import "./footer.css";
+import { Container } from "@mui/material";
 
 const Footer = () => {
-  const [year, setyear] = useState(new Date().getFullYear());
+
   
   return (
     <div className="footer">
-      <div data-aos="fade-up" data-aos-duration="3000" className="fLists">
+      <div data-aos="fade-up" data-aos-duration="3000" className="fLists" style={{padding:10}}>
         <ul className="fList">
           <li className="fListItem">Countries</li>
           <li className="fListItem">Regions</li>
@@ -47,7 +48,7 @@ const Footer = () => {
           <li className="fListItem">Terms & conditions</li>
         </ul>
       </div>
-      <div className="fText">`Copyright © ${year} Lamabooking.`</div>
+      <div className="fText">{`Copyright © ${new Date().getFullYear()} Lamabooking.`}</div>
     </div>
   );
 };
