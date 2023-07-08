@@ -25,7 +25,6 @@ const History = lazy(() => import("./components/History/History"));
 // import "@fontsource/roboto/500.css";
 // import "@fontsource/roboto/700.css";
 
-
 function App() {
 	axios.defaults.withCredentials = true;
 
