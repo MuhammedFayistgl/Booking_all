@@ -16,9 +16,11 @@ const Formcomponent = () => {
 	const Userinfo = useSelector((state) => state.userBocking);
 	const Rdxstate = useSelector((state) => state.SearchSlice);
 	console.log("Rdxstate", Userinfo);
+	console.log("eml",);
 
 	const SubmitHandler = (e) => {
-		e.preventDefault();
+		e.preventDefault()
+	
 		const BookingData = {
 			Date: new Date().toLocaleDateString(),
 			Time: new Date().toLocaleTimeString(),
@@ -54,8 +56,8 @@ const Formcomponent = () => {
 
 	return (
 		<>
-			<form onSubmit={(e) => SubmitHandler(e)}>
-				<Box component="form">
+			<>
+				<Box component="form" onSubmit={(e) => { SubmitHandler(e)}}>
 					<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 						<Grid item xs={6}>
 							<NameFilled />
@@ -71,7 +73,7 @@ const Formcomponent = () => {
 						</Grid>
 					</Grid>
 				</Box>
-			</form>
+			</>
 		</>
 	);
 };

@@ -1,25 +1,23 @@
-.homeContainer{
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+.homeContainer {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+	justify-content: space-between;
+	
 }
 
-.homeTitle{
-  width: 1024px;
-  
-}
 .searchItem {
-  border: 1px solid lightgray;
-  padding: 10px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 20px;
+	border: 1px solid lightgray;
+	padding: 10px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 20px;
 }
 .headerSearchInput {
-  border: none;
-  outline: none;
+	border: none;
+	outline: none;
 }

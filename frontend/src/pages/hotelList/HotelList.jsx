@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { Box, Grid, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Box, Grid, ToggleButton, ToggleButtonGroup,Container } from "@mui/material";
 import "./hotellist.scss";
 import ToggleGrpBTN from "./ToggleGrpBTN";
 
@@ -12,7 +12,8 @@ const HotelList = () => {
 	return (
 		<div>
 			<Navbar />
-			<Box className=" hotellist-container ">
+			<Container>
+				<Box className=" hotellist-container ">
 				<Box className=" hotellist-headng">
 					<h1>Find the perfect hotel </h1>
 					<p>From cheap hotels to luxury rooms and everything in between</p>
@@ -33,10 +34,10 @@ const HotelList = () => {
 				</div>
 			</div>
 			<div className="filterd-wraper">
-				<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+				<>
 					{/* image List */}
 					<Filterlist style={"img-siz-dcrs"} />
-				</Grid>
+				</>
 			</div>
 			<div className="button-see-more">
 				<ToggleGrpBTN />
@@ -46,6 +47,8 @@ const HotelList = () => {
 					<Footer />
 				</div>
 			</div>
+			</Container>
+			
 		</div>
 	);
 };

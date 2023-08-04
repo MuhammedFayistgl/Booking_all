@@ -23,11 +23,11 @@ const Confomation = () => {
 			<Container >
 				{/* Active Step Component */}
 				<Activstep />
-
-				<div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
-					//** Disable Search button Props */
-					<Searchbox butonDesable={true} />
+				<div style={{ display: "flex", justifyContent: "center" }}>
+					 {/* Disable Search button Props */}
+				<Searchbox butonDesable={true} confm={true} />
 				</div>
+				
 				<ConfomLayout />
 			
 			</Container>

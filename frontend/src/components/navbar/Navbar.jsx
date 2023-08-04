@@ -1,52 +1,64 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./navbar.scss";
 import Drower from "../Drower/Drower";
-import { Button, ButtonToolbar } from "rsuite";
+import { Button, ButtonToolbar, IconButton } from "rsuite";
 import { useDispatch, useSelector } from "react-redux";
-import { TbBrandBooking } from "react-icons/tb";
+import { BsBootstrap } from "react-icons/bs";
 import OnlineStatus from "../OnlineStatus/OnlineStatus";
 import { useCookies } from "react-cookie";
 import Confirmalertbutton from "./ConfrmlogoutBTN/Confirmloginalert";
 import { DrowerSetOpen } from "../../Reducs/userBockingSlice";
-import { getmyBooking } from "../../Reducs/extraSlice";
+import { Container } from "@mui/material";
+import {  Avatar } from 'rsuite';
+import { gerUser } from "../../utils/BookingHelper";
+const Navbar = ({wlcom}) => {
+	let navigate = useNavigate();
+	const dispath = useDispatch();
+	const [cookies, setCookie, removCookie] = useCookies();
 
-const Navbar = ({ wlcom }) => {
-  let navigate = useNavigate();
-  const dispath = useDispatch();
-  const [cookies, setCookie, removCookie] = useCookies();
+	const BookData = true;
+	const user = gerUser();
+	return (
+		<div className="navbar">
+			<Container>
+					<div className="navContainer">
+				<Link to={"/"}>
+        <span className="logo"> {wlcom ? `Welcome to ` : null} HotelDelay</span>
+				</Link>
+				<div className="navItems">
+					{BookData && user && (
+						<ButtonToolbar style={{ position: "absolute", right: "114%" }}>
+							<IconButton
+								onClick={() => dispath(DrowerSetOpen(true))}
+								icon={<BsBootstrap />}
+								color="blue"
+								appearance="primary"
+								circle
+							/>
+						</ButtonToolbar>
+					)}
 
-  const BookData =true
+					<Drower />
+					
+					{cookies.token ? (
+						<Confirmalertbutton />
+					) : (
+						<Button onClick={() => navigate("/login")} color="cyan" appearance="ghost">
+							login
+						</Button>
+					)}
 
-  return (
-    <div className="navbar">
-      <div className="navContainer">
-        <Link to={"/"}>
-          <span className="logo"> {wlcom ? `Welcome to ` : null} HotelDelay</span>
-        </Link>
-        <div className="navItems">
-          {BookData && (
-            <ButtonToolbar style={{ position: "absolute", right: "114%" }}>
-              <Button onClick={() => dispath(DrowerSetOpen(true),  dispath(getmyBooking()))} color="green" appearance="primary" endIcon={<TbBrandBooking />}>
-                Your Booking
-              </Button>
-            </ButtonToolbar>
-          )}
-          <Drower />
-          {cookies.token ? (
-            <Confirmalertbutton />
-          ) : (
-            <button onClick={() => navigate("/login")} className="navButton">
-              Login
-            </button>
-          )}
-          <button onClick={() => navigate("/signUp")} className="navButton">
-            Register
-          </button>
-        </div>
-      </div>
-      <OnlineStatus />
-    </div>
-  );
+					<Button style={{marginleft:3}} onClick={() => navigate("/signUp")} color="blue" appearance="subtle">
+						Register
+					</Button>
+					
+				</div>
+			</div>
+			<OnlineStatus />
+			</Container>
+		
+		</div>
+	);
 };
 
 export default Navbar;

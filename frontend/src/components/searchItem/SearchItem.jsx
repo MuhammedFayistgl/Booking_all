@@ -20,11 +20,11 @@ const SearchItem = ({ options }) => {
                 {itm.name}
               </h1>
               <span className="siDistance">{`${itm.place} from center`}</span>
-              <span className="siTaxiOp">Free airport taxi</span>
+              {/* <span className="siTaxiOp">Free airport taxi</span>
               <span className="siSubtitle">Studio Apartment with Air conditioning</span>
-              <span className="siFeatures">Entire studio • 1 bathroom • 21m² 1 full bed</span>
+              <span className="siFeatures">Entire studio • 1 bathroom • 21m² 1 full bed</span> */}
               <span className="siCancelOp">Free cancellation </span>
-              <span className="siCancelOpSubtitle">You can cancel later, so lock in this great price today!</span>
+              {/* <span className="siCancelOpSubtitle">You can cancel later, so lock in this great price today!</span> */}
             </Box>
             <Box className="siDetails">
               <div className="siRating">
@@ -35,7 +35,7 @@ const SearchItem = ({ options }) => {
                   {itm.rating === 2 && <span style={{ color: "red" }}>Avarage</span>}
                   {itm.rating === 1 && <span style={{ color: "red" }}>Avarage</span>}
                   <div className="stars">
-                    <Rating name="read-only" value={itm.rating} readOnly />
+                    <Rating name="read-only" size="small"  value={itm.rating} readOnly />
                   </div>
                 </div>
                 <button>8.9</button>

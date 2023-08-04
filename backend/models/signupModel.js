@@ -15,7 +15,7 @@ const userSingSchema = mongoose.Schema({
   },
   otp: {
     type: String,
-  },
+  }
 });
 
 const userSingaDB = mongoose.model("UserSignData", userSingSchema);

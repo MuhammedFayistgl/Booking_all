@@ -13,9 +13,12 @@ const userBooking = mongoose.Schema({
     orderdID: {
         type: 'String',
         required: [true, 'orderdID required ! orderdID missing !!'],
+        unique: false,
     },
-    userID:{
+    userID: {
         type: 'String',
+        unique: false,
+        required: [false],
     },
     endDate: {
         type: 'Date',
@@ -30,8 +33,8 @@ const userBooking = mongoose.Schema({
     },
     Email: {
         type: 'String',
-        required: [true, 'email required'],
-        unique: false, 
+        unique: false,
+        required: [false, 'email required'],
     },
     FullName: {
         type: 'String',
@@ -41,6 +44,9 @@ const userBooking = mongoose.Schema({
         type: 'String',
         required: [true, 'phone Number required']
     }
+
+}, {
+    timestamps: true
 })
 
 const BookingUserModel = mongoose.model('BookingUser', userBooking)

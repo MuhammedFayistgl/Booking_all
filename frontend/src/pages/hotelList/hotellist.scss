@@ -1,25 +1,84 @@
+//mixins ------
+//
+//  MEDIA QUERIES
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// A map of breakpoints.
+$breakpoints: (
+    xs: 375px,
+    sm: 640px,
+    md: 960px,
+    lg: 1200px,
+    xl: 1600px,
+    custom-tablet: 768px
+);
+
+//
+//  RESPOND BETWEEN
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-between(sm, md) {}
+@mixin respond-between($lower, $upper) {
+
+    // If both the lower and upper breakpoints exist in the map.
+    @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+
+        // Get the lower and upper breakpoints.
+        $lower-breakpoint: map-get($breakpoints, $lower);
+        $upper-breakpoint: map-get($breakpoints, $upper);
+
+        // Write the media query.
+        @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+            @content;
+        }
+
+        // If one or both of the breakpoints don't exist.
+    }
+
+    @else {
+
+        // If lower breakpoint is invalid.
+        @if (map-has-key($breakpoints, $lower)==false) {
+
+            // Log a warning.
+            @warn 'Your lower breakpoint was invalid: #{$lower}.';
+        }
+
+        // If upper breakpoint is invalid.
+        @if (map-has-key($breakpoints, $upper)==false) {
+
+            // Log a warning.
+            @warn 'Your upper breakpoint was invalid: #{$upper}.';
+        }
+    }
+}
+
 .hotellist-container {
     display: flex;
     justify-content: center;
     // background-color: #6e6e6e;
 }
+
 .headerSearchInput {
     border: none;
     outline: none;
-  }
+}
+
 .hotellist-headng {
     width: 100%;
     max-width: 1024px;
- margin: 40px 0;
+    margin: 40px 0;
+
     h1,
     p {
         font-family: "Open Sans", sans-serif;
-       
+
     }
 
-   
+
 }
-.hotellist{
+
+.hotellist {
     height: 50px;
     background-color: white;
     border: 3px solid #febb02;
@@ -28,35 +87,75 @@
     justify-content: space-around;
     padding: 10px 0px;
     border-radius: 5px;
-   margin: 40px 0;
+    margin: 40px 0;
     width: 100%;
     max-width: 1024px;
     position: relative;
 }
-.heder{
-    display: flex;  
+
+.heder {
+    display: flex;
     display: flex;
     justify-content: center;
     margin-top: 5%;
 }
-.hedercontent{
+
+.hedercontent {
     width: 100%;
     max-width: 1024px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.filterd-wraper{
+
+.filterd-wraper {
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 50px;
+    gap:5%
 }
+
 // .filterd-items-wraper{
 //     // width: 100%;
 //     // max-width: 1024px;
-    
+
 // }
-.button-see-more{
+.button-see-more {
     display: flex;
     justify-content: center;
+}
+
+@include respond-between(xs, sm) {
+    .hotellist-headng {
+        margin: 19px 0 0 0;
+
+        h1 {
+            font-size: 20px;
+        }
+    }
+
+    .hedercontent {
+        .left {
+            h3 {
+                font-size: 16px;
+                line-height: normal;
+            }
+
+            p {
+                font-size: 10px;
+            }
+        }
+    }
+
+    .heder {
+        margin-top: 0%;
+    }
+
+    .filterd-wraper {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
 }

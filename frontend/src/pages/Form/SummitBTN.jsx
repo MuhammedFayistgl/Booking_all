@@ -12,7 +12,7 @@ const SummitBTN = () => {
 	const vfyEmail = state?.Email?.isValid;
 	const vfyName = state?.FullName;
 	const vfyPhone = state?.Phone?.isValid;
-	console.log();
+	console.log(vfyEmail,vfyName,vfyPhone);
 	return (
 		<>
 			<Tooltip title={<TooltipComponent />}>

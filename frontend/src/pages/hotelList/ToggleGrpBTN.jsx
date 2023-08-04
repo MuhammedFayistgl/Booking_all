@@ -13,8 +13,8 @@ const ToggleGrpBTN = () => {
         value={alignment} 
         exclusive 
         onChange={handleChange} aria-label="Platform">
-			<ToggleButton sx={{color:'#ffff'}}  value="tonight">Hotels fot tonight</ToggleButton>
-			<ToggleButton sx={{color:'#ffff'}} value="weekend">Hotels for this weekend</ToggleButton>
+			<ToggleButton sx={{color:'#ffff'}}  value="tonight"> tonight</ToggleButton>
+			<ToggleButton sx={{color:'#ffff'}} value="weekend">  weekend</ToggleButton>
 		</ToggleButtonGroup>
 	);
 };

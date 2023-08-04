@@ -10,8 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { FormSummitStatus, bockingDate, optionsDicress, optionsIngreass, setDestination } from "../../Reducs/SearchSlice";
 
 import "./searchbox.scss";
+import '../../components/header/Header.scss';
+import { Container } from "@mui/material";
 
-const Searchbox = ({ type, butonDesable }) => {
+const Searchbox = ({ type, butonDesable ,confm}) => {
   /**
    * ! Collect Data From reducx store
    */
@@ -40,11 +42,11 @@ const Searchbox = ({ type, butonDesable }) => {
   return (
     <>
       <div
-        className={type ? "hotellist" : "headerSearch"}
-        style={butonDesable ? { width: "76%", justifyContent: "center" } : { width: "100%" }}
+        className={ type ? "hotellist " : `headerSearch ${confm && `addPositon `}`}
+        style={butonDesable ? { width: "76%", justifyContent: "center",    bottom:" 453px" } : { width: "100%" }}
       >
         {!butonDesable && (
-          <div className="headerSearchItem">
+          <div className="headerSearchItem onlylg">
             <i className="fa-solid fa-bed headerIcon"></i>
             <input
               type="text"
@@ -129,15 +131,15 @@ const Searchbox = ({ type, butonDesable }) => {
             </div>
           )}
         </div>
-        <div className="headerSearchItem">
+        <div className="headerSearchItem onlylg">
           {!butonDesable && (
             <button
               className="headerBtn header-search-button"
-              onClick={() => {
-                navigate("/hotelslist", {
-                  state: { destination, date, options },
-                });
-              }}
+              // onClick={() => {
+              //   navigate("/hotelslist", {
+              //     state: { destination, date, options },
+              //   });
+              // }}
             >
               Search
             </button>

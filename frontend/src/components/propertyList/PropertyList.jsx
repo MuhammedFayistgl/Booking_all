@@ -7,13 +7,14 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 import { useNavigate } from "react-router-dom";
-import "./propertyList.css";
+import "./propertyList.scss";
 import { useSelector } from "react-redux";
 import Villas from "./Villas/Villas";
 import Resorts from "./Resorts/Resorts";
 import Apartments from "./Apartments/Apartments";
 import Hotels from "./Hotels/Hotels";
 import Cabins from "./Cabins/Cabins";
+import { Container, Typography } from "@mui/material";
 
 
 const PropertyList = () => {
@@ -26,33 +27,37 @@ const PropertyList = () => {
 
   return (
     <div className="pList">
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
+
+      <Container>
+      <span className="homeTitle" >
+					Browse by property type
+				</span>
+        <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
         pagination={{
           clickable: true,
         }}
         breakpoints={{
-          "@0.00": {
+          300: {
             slidesPerView: 1,
-            spaceBetween: 10,
+            spaceBetween: 15,
           },
-          "@0.75": {
+          640: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          "@1.00": {
-            slidesPerView: 3,
+          768: {
+            slidesPerView: 4,
             spaceBetween: 40,
           },
-          "@1.50": {
-            slidesPerView: 4,
+          1024: {
+            slidesPerView: 5,
             spaceBetween: 50,
           },
         }}
         modules={[Pagination]}
         className="mySwiper"
-        direction="horizontal"
       >
         <SwiperSlide> <Hotels />  </SwiperSlide>
         <SwiperSlide> <Apartments /></SwiperSlide>
@@ -60,6 +65,8 @@ const PropertyList = () => {
         <SwiperSlide> <Cabins /></SwiperSlide>
         <SwiperSlide> <Villas /></SwiperSlide>
       </Swiper>
+      </Container>
+      
     </div>
   );
 };

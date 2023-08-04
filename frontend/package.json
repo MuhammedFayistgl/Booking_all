@@ -63,7 +63,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^1.1.5",
     "styled-components": "^5.3.9",
-    "swiper": "^9.1.0",
+    "swiper": "^9.4.1",
     "vite": "^4.3.2",
     "vitest": "^0.32.2",
     "web-vitals": "^2.1.4"

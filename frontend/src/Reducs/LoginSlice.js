@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginWithEmail } from "./extraSlice";
+import { loginVerification, loginWithEmail } from "./extraSlice";
 import { toast } from "react-hot-toast";
 
 
@@ -11,6 +11,7 @@ const state = {
   emailErr: false,
   login: false,
   cookie: false,
+  user: null,
 };
 
 const loginSlice = createSlice({
@@ -53,6 +54,12 @@ const loginSlice = createSlice({
       state.loading = false;
       console.log('action.paylod', action.payload);
     },
+    //loginVerification
+    [loginVerification.fulfilled]: (state, action) => {
+      state.loginVerification = action.payload
+      state.user = action.payload.data
+      toast.success(action.payload?.message)
+    }
   },
 });
 

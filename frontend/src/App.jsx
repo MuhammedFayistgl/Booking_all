@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
 import "rsuite/dist/rsuite.min.css";
 import { useDispatch } from "react-redux";
@@ -7,6 +7,8 @@ import { dataCollection } from "./Reducs/extraSlice";
 import { useCookies } from "react-cookie";
 import { Toaster } from "react-hot-toast";
 import { Loader } from "rsuite";
+import Navbar from "./components/navbar/Navbar";
+import ProfileComponent from "./pages/ProfileComp/ProfileComponent";
 
 //*? import pages */
 const Home = lazy(() => import("./pages/home/Home"));
@@ -45,6 +47,9 @@ function App() {
 					<Route path="/signUp" element={<Sign />} />
 					<Route path="/otp" element={<Otp />} />
 					<Route path="/" element={<Home />} />
+					<Route  element={<Outlet />}>
+						<Route path="/profile"element={<ProfileComponent />} />
+					</Route>
 					<Route path="/hotelslist" element={<List />} />
 					<Route path="/filterhotels/:params" element={<HotelList />} />
 					<Route path="/hotel/:_id" element={<Hotel />} />

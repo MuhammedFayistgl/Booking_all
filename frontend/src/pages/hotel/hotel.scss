@@ -1,0 +1,377 @@
+//mixins ------
+//
+//  MEDIA QUERIES
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// A map of breakpoints.
+$breakpoints: (
+  xs: 375px,
+  sm: 640px,
+  md: 960px,
+  lg: 1200px,
+  xl: 1600px,
+  custom-tablet: 768px
+);
+
+//
+//  RESPOND ABOVE
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-above(sm) {}
+@mixin respond-above($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  }
+
+  @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+
+//
+//  RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-below(sm) {}
+@mixin respond-below($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  }
+
+  @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+//
+//  RESPOND BETWEEN
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-between(sm, md) {}
+@mixin respond-between($lower, $upper) {
+
+  // If both the lower and upper breakpoints exist in the map.
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+
+    // Get the lower and upper breakpoints.
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+
+    // Write the media query.
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+
+    // If one or both of the breakpoints don't exist.
+  }
+
+  @else {
+
+    // If lower breakpoint is invalid.
+    @if (map-has-key($breakpoints, $lower)==false) {
+
+      // Log a warning.
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+
+    // If upper breakpoint is invalid.
+    @if (map-has-key($breakpoints, $upper)==false) {
+
+      // Log a warning.
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+
+
+.hotelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.hotelWrapper {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.bookNow {
+  font-size: small;
+  background-color: #0071c2;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  padding: 6px 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
+@include respond-between(xs, sm) {
+  .bookNow {
+    width: 115px;
+  }
+}
+
+.hotelTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10%;
+}
+
+
+@include respond-between(xs, sm) {
+  .hotelTitleContainer{
+    margin-top: 7%;
+  }
+  .hotelTitle {
+    line-height: 25px;
+  }
+}
+
+.hotelTitle {
+  font-size: 24px;
+}
+
+.hotelAddress {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hotelDistance {
+  color: #0071c2;
+  font-weight: 500;
+}
+
+.hotelPriceHighlight {
+  color: #008009;
+  font-weight: 500;
+}
+
+.hotelImages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.hotelImgWrapper {
+  width: 33%;
+}
+
+.hotelImg {
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.hotelDetails {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.hotelDetailsTexts {
+  flex: 3;
+}
+
+.hotelDesc {
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.hotelDetailsPrice {
+  flex: 1;
+  /* background-color: #ebf3ff; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hotelDetailsPrice>h1 {
+  font-size: 18px;
+  color: #555;
+}
+
+.hotelDetailsPrice>span {
+  font-size: 14px;
+}
+
+.hotelDetailsPrice>h2 {
+  font-weight: 300;
+}
+
+.hotelDetailsPrice>button {
+  border: none;
+  padding: 10px 20px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.slider {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.613);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+@include respond-between(xs, sm) {
+  .slider{
+    height: 40vh;
+  }
+  .hotelContainer{
+    margin-top: 30px;
+  }
+  .close {
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+  }
+}
+@include respond-between(sm, md) {
+
+  .hotelContainer{
+    margin-top: 50px;
+  }
+  .slider{
+    height: 48vh;
+  }
+}
+@include respond-between(md, lg) {
+
+  .hotelContainer{
+    margin-top: 15px;
+  }
+  .slider{
+    height: 40vh;
+  }
+}
+@include respond-between(lg, xl) {
+
+ 
+  .slider{
+    height: 40vh;
+  }
+}
+.sliderWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sliderImg {
+  width: 80%;
+  height: 80vh;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: lightgray;
+  cursor: pointer;
+}
+@include respond-between(xs, sm) {
+
+  .close {
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+  }
+}
+.arrow {
+  margin: 20px;
+  font-size: 50px;
+  color: lightgray;
+  cursor: pointer;
+}
+@include respond-between(xs, sm) {
+
+  .arrow {
+    margin: 5px;
+    font-size: 17px;
+  }
+}
+@include respond-between(md, lg) {
+
+  .arrow {
+    margin: 11px;
+    font-size: 44px;
+  }
+}
+@include respond-between(sm, md) {
+
+  .arrow {
+    margin: 8px;
+    font-size: 27px;
+  }
+}
+
+@include respond-between(xs, sm) {
+  .sliderImg {
+    width: 118%;
+    height: 32vh;
+  }
+}
+
+@include respond-between(sm, md) {
+  .sliderImg {
+    width: 108%;
+    height: 41vh;
+  }
+}
+
+@include respond-between(md, xl) {
+  .sliderImg {
+    width: 108%;
+    height: 37vh;
+  }
+}

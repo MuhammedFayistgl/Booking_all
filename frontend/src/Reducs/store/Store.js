@@ -5,6 +5,7 @@ import userBocking from '../userBockingSlice'
 import HotelSlice from '../mainDataClice'
 import DrowerSettings from '../DrowerSettings'
 import loginSlice from '../LoginSlice'
+import profileHandlerSlice from '../ProfileUplodeingSlice'
 // Store configuration
 export const Store = configureStore({
     reducer:{
@@ -14,5 +15,6 @@ export const Store = configureStore({
         HotelSlice,
         DrowerSettings,
         loginSlice,
+        profileHandlerSlice
     }
 })

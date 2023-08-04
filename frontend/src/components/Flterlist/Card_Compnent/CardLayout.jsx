@@ -7,7 +7,7 @@ import '../filterlist.scss'
 const CardLayout = ({ itm, style }) => {
 	const navigate = useNavigate();
 	return (
-		<Grid item xs={6}>
+		<>
 			<div className="searchItem">
 				<CardAvathar itm={itm} style={style} />
 
@@ -32,7 +32,7 @@ const CardLayout = ({ itm, style }) => {
 					</div>
 				</div>
 			</div>
-		</Grid>
+		</>
 	);
 };
 

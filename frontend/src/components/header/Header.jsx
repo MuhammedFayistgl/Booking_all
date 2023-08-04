@@ -1,65 +1,47 @@
-import "./header.css";
+import "./header.scss";
+import { Navbar, Container, } from "rsuite";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Searchbox from "../Searchbox/Searchbox";
-import vedio from "../../assets/production ID_4193130.mp4";
+import { Nav } from "rsuite";
 
-const Header = ({ type }) => {
+import FacebookSquareIcon from "@rsuite/icons/legacy/FacebookSquare";
+import SearchPeopleIcon from "@rsuite/icons/SearchPeople";
+import ChromeIcon from "@rsuite/icons/legacy/Chrome";
+import EllipsisHIcon from "@rsuite/icons/legacy/EllipsisH";
+import DropboxIcon from "@rsuite/icons/legacy/Dropbox";
+import GitlabIcon from "@rsuite/icons/legacy/Gitlab";
+import LinuxIcon from "@rsuite/icons/legacy/Linux";
+
+const Header = ({ type, wlcom }) => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="header">
-			{/* <img
-      className="header-main-background-img"
-        src="https://images.unsplash.com/photo-1645978216208-8f29150e55c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-        alt="main-bg"
-       
-      /> */}
-			{/* <video src={vedio} autoPlay={true}/> */}
-			<div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
-				<div className="headerList">
-					<div className="headerListItem active">
-						<i className="fa-solid fa-bed"></i>
-
-						<span>Stays</span>
-					</div>
-					<div className="headerListItem">
-						<i className="fa-sharp fa-solid fa-plane"></i>
-						<span>Flights</span>
-					</div>
-					<div className="headerListItem">
-						<i className="fa-sharp fa-solid fa-car"></i>
-						<span>Car rentals</span>
-					</div>
-					<div className="headerListItem">
-						<i className="fa-solid fa-bed"></i>
-						<span>Attractions</span>
-					</div>
-					<div className="headerListItem">
-						<i className="fa-sharp fa-solid fa-taxi"></i>
-						<span>Airport taxis</span>
-					</div>
+		<>
+			<Navbar appearance="inverse" className="header">
+				<Nav>
+					<Nav.Item icon={<FacebookSquareIcon />}>facebook</Nav.Item>
+					<Nav.Item icon={<ChromeIcon />}>chrome</Nav.Item>
+					<Nav.Menu icon={<EllipsisHIcon />} title="more...">
+						<Nav.Item icon={<DropboxIcon />}>dropbox</Nav.Item>
+						<Nav.Item icon={<SearchPeopleIcon />}>
+							<Link to={"/profile"}>Profile</Link>
+						</Nav.Item>
+						<Nav.Item icon={<GitlabIcon />}>gitlab</Nav.Item>
+						<Nav.Item icon={<LinuxIcon />}>linux</Nav.Item>
+					</Nav.Menu>
+				</Nav>
+			</Navbar>
+			<Container className="headerContainer">
+				<div className="headerTitleContainer">
+					<h1 className="headerTitle">A lifetime of discounts? It's Genius.</h1>
+					<p className="headerDesc">
+						Get rewarded for your travels – unlock instant savings of 10% or more with a free Lamabooking account
+					</p>
+					<Searchbox />
 				</div>
-				{type !== "list" && (
-					<>
-						<h1 className="headerTitle">A lifetime of discounts? It's Genius.</h1>
-						<p className="headerDesc">
-							Get rewarded for your travels – unlock instant savings of 10% or more with a free Lamabooking account
-						</p>
-						<button
-							onClick={() => {
-								navigate("/login");
-							}}
-							className="headerBtn"
-						>
-							Sign in / Register
-						</button>
-
-						<Searchbox />
-					</>
-				)}
-			</div>
-		</div>
+			</Container>
+		</>
 	);
 };
 

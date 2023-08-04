@@ -1,5 +1,5 @@
 import { Input, InputGroup } from "rsuite";
-import "./mailList.css";
+import "./mailList.scss";
 
 const MailList = () => {
 	return (
@@ -11,7 +11,7 @@ const MailList = () => {
 				Sign up and we'll send the best deals to you
 			</span>
 			<div className="mailInputContainer">
-				<InputGroup style={{width:300}}>
+				<InputGroup className='inputgrupe'>
 					<InputGroup.Addon> @</InputGroup.Addon>
 					<Input />
 				</InputGroup>

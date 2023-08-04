@@ -14,7 +14,7 @@ root.render(
     <CookiesProvider>
       <Provider store={Store}>
         <CustomProvider   theme="dark">
-          <App />
+          <App  />
         </CustomProvider>
       </Provider>
     </CookiesProvider>

@@ -3,8 +3,9 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
-import "./hotel.css";
+import {Container} from "@mui/material";
+import "./hotel.scss";
+import "../../components/Searchbox/Searchbox.scss";
 const Header = lazy(() => import("../../components/header/Header"));
 const MailList = lazy(() => import("../../components/mailList/MailList"));
 const Footer = lazy(() => import("../../components/footer/Footer"));
@@ -42,14 +43,15 @@ console.log(location);
 
 		setSlideNumber(newSlideNumber);
 	};
-
+	
 	return (
 		<div>
 			{/* Navbar */}
 			<Navbar />
 			{/* Header */}
 			<Header type="list" />
-			<div className="hotelContainer">
+			<Container>
+				<div className="hotelContainer">
 				{open && (
 					<div className="slider">
 						<i
@@ -75,12 +77,12 @@ console.log(location);
 				)}
 				<div className="hotelWrapper">
 					{/* Confom button */}
-					<CnfmBTN bookNow={"bookNow"} />
+					
 					{/* infomation Component */}
 					<Information />
 					<div className="hotelImages">
 						{state?.extraImages?.map((photo, i) => (
-							<div className="hotelImgWrapper" key={i}>
+							<div className="hotelImgWrapper" key={i} onClick={()=> handleOpen(i)}>
 								<LazyLoadImage className="hotelImg"  alt={"image.alt"} effect="blur" src={photo.Url} />
 							</div>
 						))}
@@ -98,6 +100,8 @@ console.log(location);
 				<MailList />
 				<Footer />
 			</div>
+			</Container>
+			
 		</div>
 	);
 };

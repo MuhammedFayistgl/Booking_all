@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { BockingHandler, getmyBooking } from './extraSlice'
+import { BockingHandler, cancelOrder, getmyBooking } from './extraSlice'
 import { toast } from 'react-hot-toast'
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -30,11 +30,11 @@ const userbocking = createSlice({
     extraReducers: {
         [BockingHandler.fulfilled]: (state, action) => {
             state.Order = action.payload
-            if (action.payload.orderstatus) {
-               new Swal("Confirmed!", action.payload.message, "success");
+            if (action.payload?.orderstatus) {
+               new Swal("Confirmed!", action.payload?.message, "success");
             }
-            else if (!action.payload.orderstatus) {
-              new  Swal("Sorry ", action.payload.message, 'error');
+            else if (!action.payload?.orderstatus) {
+              new  Swal("Sorry ", action.payload?.message, 'error');
             }
 
         
@@ -51,8 +51,14 @@ const userbocking = createSlice({
         [getmyBooking.rejected]: (state, action) => {},
         [getmyBooking.fulfilled]: (state, action) => {
             state.myBookDeatilse = action.payload
-            toast.success(action.payload.message)
+            // toast.success(action.payload?.message)
         },
+        //cancelOrder
+        [cancelOrder.fulfilled]: (state, action) => {
+            state.deletedOrder = action.payload?.data
+             console.log(action.payload?.message);
+             console.log(action.payload?.data);
+        }  ,
     }
 
 })

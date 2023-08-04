@@ -13,7 +13,7 @@ const ConfomLayout = () => {
 		return state._id == _id;
 	})[0];
 	return (
-		<Container sx={{mt:"10%"}}>
+		<Container sx={{mt:"18%"}}>
 			<Box sx={{ flexGrow: 1 }}>
 			<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 				<Grid  xs={12} sm={6} md={6}>

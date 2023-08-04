@@ -33,6 +33,7 @@ app.use(bodyParser.json({ extended: false }));
 app.use(bodyParser.json());
 dotenv.config()
 app.use(express.static("public"));
+app.use(express.static("public/profile"));
 
 connutionDB();
 

@@ -121,3 +121,6 @@
     --bs-card-border-color:none
 
 }
+.rs-drawer-left.rs-drawer-sm, .rs-drawer-right.rs-drawer-sm {
+    width: 70%;
+}

@@ -1,4 +1,117 @@
-.hotellist{
+//mixins ------
+//
+//  MEDIA QUERIES
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// A map of breakpoints.
+$breakpoints: (
+  xs: 375px,
+  sm: 640px,
+  md: 960px,
+  lg: 1200px,
+  xl: 1600px,
+  custom-tablet: 768px
+);
+
+//
+//  RESPOND ABOVE
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-above(sm) {}
+@mixin respond-above($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  }
+
+  @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+
+//
+//  RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-below(sm) {}
+@mixin respond-below($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  }
+
+  @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+//
+//  RESPOND BETWEEN
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-between(sm, md) {}
+@mixin respond-between($lower, $upper) {
+
+  // If both the lower and upper breakpoints exist in the map.
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+
+    // Get the lower and upper breakpoints.
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+
+    // Write the media query.
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+
+    // If one or both of the breakpoints don't exist.
+  }
+
+  @else {
+
+    // If lower breakpoint is invalid.
+    @if (map-has-key($breakpoints, $lower)==false) {
+
+      // Log a warning.
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+
+    // If upper breakpoint is invalid.
+    @if (map-has-key($breakpoints, $upper)==false) {
+
+      // Log a warning.
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+
+
+.hotellist {
     height: 50px;
     background-color: white;
     border: 3px solid #febb02;
@@ -7,22 +120,90 @@
     justify-content: space-around;
     padding: 10px 0px;
     border-radius: 5px;
-   margin: 40px 0;
+    margin: 40px 0;
     width: 100%;
     max-width: 1024px;
     position: relative;
 }
+
+.headerBtn {
+    background-color: #0071c2;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    line-height: normal;
+}
+
+.header-search-button {
+    padding: 3px 20px;
+}
+
 .headerSearch {
-    height: 50px;
-    background-color: white;
-    border: 3px solid #febb02;
+  height: 50px;
+  background-color: white;
+  border: 3px solid #febb02;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0px;
+  border-radius: 5px;
+  position: absolute;
+  // bottom: -25px;
+  width: 94%;
+  max-width: 1024px;
+}
+.optionItem {
+    width: 200px;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 0px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: -25px;
-    width: 100%;
-    max-width: 1024px;
+    justify-content: space-between;
+    margin: 10px;
+  } 
+  
+  @include respond-between(xs,sm){
+   .headerSearch{
+    bottom: -46px;
+   }
+   .addPositon{
+    top: 159px;
+   }
+    .optionItem{
+        width: 150px; 
+        line-height: initial;
+    }
+    
+    .headerContainer{
+        line-height:10px 
+    } 
+    
+  }
+  @include respond-below(xs) {
+    .addPositon{
+      top: 176px;
+    }
+  }
+  @include respond-between(sm,md){
+    .headerSearch{
+      top: 100px;
+    }
+      .addPositon{
+      top: 159px;
+    }
+     
+   }
+
+  @include respond-between(md,xl){
+    .headerSearch{
+      top: 182px;
+    }
+     
+   }
+  @include respond-above(md) {
+    .headerSearch{
+      left: 50%;
+      top: 159px;
+      transform: translateX(-50%);
+
+    }
   }

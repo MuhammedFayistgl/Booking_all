@@ -67,7 +67,39 @@ export const BockingHandler = createAsyncThunk(
 export const getmyBooking = createAsyncThunk("getmyBooking",
   async () => {
     const res = await axios.get('http://localhost:5000/user/getmyBooking')
-      .then((response) => { return response.data }).catch((err) => toast.error(err));
-      return res 
+      .then((response) => { return response.data }).catch((err) => console.log(err));
+    return res
   }
 )
+
+export const cancelOrder = createAsyncThunk('cancelOrder',
+  async (id) => {
+    const data = await axios.post('http://localhost:5000/user/cancelOrder', { orderID: id })
+      .then(response => { return response.data })
+      .catch(err => toast.error(err))
+    return data
+  }
+)
+export const loginVerification = createAsyncThunk('loginVerification',
+  async () => {
+    const data = await axios.post('http://localhost:5000/user/getuser')
+      .then((res) => { return res.data }).catch(err => { return err.response.data })
+    return data
+  }
+)
+export const setProfileimageFileAsync = createAsyncThunk('setProfileimageFileAsync',
+  async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    console.log(formData.get('file'));
+    const data = await axios.post("http://localhost:5000/user/uplodprofileimg", formData, config)
+      .then((res) => { return res.data }).catch(err => { return err.response.data })
+    return data
+  }
+)
+

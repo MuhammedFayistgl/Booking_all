@@ -7,6 +7,7 @@ const CnfmBTN = ({ bookNow }) => {
     return (
         <button onClick={() => navigate(`/confometon/${_id}`)} {...bookNow && { className: "bookNow" }} >
             Reserve or Book Now!
+            
         </button>
     )
 }

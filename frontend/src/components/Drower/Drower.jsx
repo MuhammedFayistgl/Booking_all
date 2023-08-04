@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Drower.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Drawer, ButtonToolbar, Button, Placeholder } from "rsuite";
 import { Box, Paper, Typography } from "@mui/material";
 import { Progress } from "rsuite";
 import { DrowerSetOpen } from "../../Reducs/userBockingSlice";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+
 import { getPropertyHelper } from "../../utils/BookingHelper";
 import Oneitm from "./item/Oneitm";
 import {
@@ -23,17 +20,22 @@ import {
 	MDBRow,
 	MDBTypography,
 } from "mdb-react-ui-kit";
+import { getmyBooking } from "../../Reducs/extraSlice";
 
 const Drower = () => {
-	/**state */
-	const state = useSelector((state) => state.userBocking?.DrowerOpen);
-	const orderdID = useSelector((state) => state.userBocking?.myBookDeatilse?.data?.orderdID);
-	const data = getPropertyHelper(orderdID); // return booking data
-
 	const dispath = useDispatch();
 
+	/**state */
+	const state = useSelector((state) => state.userBocking?.DrowerOpen);
+	const cancel = useSelector((state) => state.userBocking?.Order?.data);
+	const data = getPropertyHelper(); // return booking data
+	// console.log('dataaas===',data);
+	useEffect(() => {
+		dispath(getmyBooking());
+	}, [state,cancel]);
+
 	return (
-		<div style={{ position: "relative", overflow: "hidden" }}>
+		<div style={{ position: "relative", overflow: "hidden", width: "70%" }}>
 			<Drawer open={state} onClose={() => dispath(DrowerSetOpen(false))}>
 				<Drawer.Body>
 					<Placeholder.Paragraph />
@@ -58,8 +60,8 @@ const Drower = () => {
 														Your products
 													</MDBTypography>
 													{data &&
-														data.map((itm) => {
-															return <Oneitm itm={itm} key={itm._id} />;
+														data?.map((itm) => {
+															return <Oneitm  itm={itm} key={itm._id} />;
 														})}
 												</MDBCol>
 											</MDBRow>

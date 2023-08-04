@@ -56,11 +56,11 @@ export const registergenrteOtpHandler = async (req, res, next) => {
 };
 
 export const otpverifyingHandler = async (req, res, next) => {
-  // res.status(204).json({ message: "please enter all fields" });
-  console.log(req.body);
+
+
 
   const { otpHash, Otp, UserName, Email, Number, password } = req.body;
-  // res.status(200).json({ message: "please enter all fields" });
+
 
   if (!UserName && !Email && !Number && !password) {
     return res.status(200).json({ message: "please enter all fields" });
@@ -104,15 +104,19 @@ export const loginHandler = async (req, res) => {
 
   const UsEmailExist = await usersmodal.find({ Email: Email });
 
+
+  const MachPassword = bcrypt.compareSync(password, UsEmailExist[0].password);
+
+
   if (UsEmailExist == []) {
     console.log('your email not registered ! please register');
     return res.status(403).json({ message: 'your email not registered ! please register' });
   }
-  else if (!UsEmailExist[0].password) {
-    return res.status(401).json({ message: "Invalid Email , please enter a valid email or register with the email" });
+  else if (!MachPassword) {
+    return res.status(401).json({ message: "your password is wrong ! " });
   }
   else {
-    const MachPassword = bcrypt.compareSync(password, UsEmailExist[0].password);
+
     console.log("MachPassword", MachPassword);
     const userID = UsEmailExist[0]._id;
     console.log("userID", userID);

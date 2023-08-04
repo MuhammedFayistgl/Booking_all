@@ -1,12 +1,12 @@
 
-import "./footer.css";
 import { Container } from "@mui/material";
+import "./footer.scss";
 
 const Footer = () => {
 
   
   return (
-    <div className="footer">
+    <Container maxWidth="md" className="footer">
       <div data-aos="fade-up" data-aos-duration="3000" className="fLists" style={{padding:10}}>
         <ul className="fList">
           <li className="fListItem">Countries</li>
@@ -49,7 +49,7 @@ const Footer = () => {
         </ul>
       </div>
       <div className="fText">{`Copyright © ${new Date().getFullYear()} Lamabooking.`}</div>
-    </div>
+    </Container>
   );
 };
 

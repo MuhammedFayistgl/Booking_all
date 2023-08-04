@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-
+import { Grid} from "@mui/material";
 import { useSelector } from "react-redux";
 import SkeletonCopnt from "../Skeleton/SkeletonCopnt";
 import "./filterlist.scss";
@@ -14,15 +14,22 @@ const Filterlist = ({ style }) => {
 
 	return (
 		<>
-			{Data ? (
+		 {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
+				{Data ? (
 				Data?.filter((data) => {
 					return data.category == params;
 				}).map((itm, index) => {
-					return <CardLayout itm={itm} key={index} style={style} />;
+					return (
+					// <Grid item xs={6}>
+						<CardLayout itm={itm} key={index} style={style} />
+						// </Grid>
+						);
 				})
 			) : (
 				<SkeletonCopnt />
 			)}
+		{/* </Grid> */}
+		
 		</>
 	);
 };

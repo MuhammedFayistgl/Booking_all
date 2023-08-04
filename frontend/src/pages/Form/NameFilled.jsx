@@ -11,7 +11,7 @@ const NameFilled = () => {
 			<Input
 				placeholder="FullName"
 				value={state?.FullName}
-				onChange={(e) => Dispath(setUseername(e.target.value))}
+				onChange={(value) => Dispath(setUseername(value))}   
 				required
 				name="FullName"
 				size="md"

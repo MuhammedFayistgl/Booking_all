@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from "react";
 import Aos from "aos";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Navbar = lazy(() => import("../../components/navbar/Navbar"));
 const Featured = lazy(() => import("../../components/featured/Featured"));
@@ -12,25 +12,29 @@ const PropertyList = lazy(() => import("../../components/propertyList/PropertyLi
 
 import "aos/dist/aos.css";
 import "./home.css";
+import { Outlet, Route, Routes } from "react-router-dom";
+import Profile from "../../components/header/ProfileIcon";
+
+
 
 const Home = () => {
+
 	useEffect(() => {
 		Aos.init({ duration: 2000 });
+		
+		
 	}, []);
 
+	
 	return (
 		<>
 			<Navbar />
 			<Header />
 			<Box className="homeContainer">
+				
+			
 				<Featured />
-				<Typography variant="h5" component="h5" className="homeTitle">
-					Browse by property type
-				</Typography>
 				<PropertyList />
-				<Typography variant="h5" component="h5" className="homeTitle">
-					Homes guests love
-				</Typography>
 				<FeaturedProperties />
 				<MailList />
 				<Footer />
